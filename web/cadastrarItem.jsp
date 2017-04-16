@@ -33,7 +33,7 @@
                 </div>
               </div>
               
-               <div class="form-group">
+              <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Título</label>
                   <div class="col-sm-10">
                       <select name="titulo" class="form-control">
@@ -46,18 +46,18 @@
                               
                               while(i.hasNext()){
                                   Titulo t = (Titulo) i.next();
-                                  out.println("<option>"+t+"</option>");
-                              }
-                          
+                                  int id = t.getId();
+                                  out.println("<option value='"+ id +"' >" +t+"</option>");
+                              }                          
                           %>
                       </select>                
                 </div>
-              </div>
+              </div>                                  
 
               <div class="form-group">
                 <label for="inputTipo" class="col-sm-2 control-label">Tipo</label>
                 <div class="col-sm-10">
-                  <select multiple class="form-control">
+                  <select class="form-control">
                     <option>Fita</option>
                     <option>DVD</option>
                     <option>BlueRay</option>                  

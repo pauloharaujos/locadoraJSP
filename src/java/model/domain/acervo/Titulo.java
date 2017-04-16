@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "titulo")
 public class Titulo {
 	
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTitulo;
 	private String nome;
@@ -47,6 +47,10 @@ public class Titulo {
 		this.classe = classe;
 		this.atores = atores;
 	}
+        
+        public int getId(){
+            return this.idTitulo;
+        }
 
 	public Titulo(){
 		
