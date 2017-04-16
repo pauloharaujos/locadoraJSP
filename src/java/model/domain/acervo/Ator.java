@@ -20,6 +20,10 @@ public class Ator {
 	public Ator(){
 		
 	}
+        
+        public int getId(){
+            return this.idAtor;
+        }
 
 	public String getNome() {
 		return nome;
@@ -29,4 +33,7 @@ public class Ator {
 		this.nome = nome;
 	}	
 	
+        public String toString(){
+            return this.nome;
+        }
 }

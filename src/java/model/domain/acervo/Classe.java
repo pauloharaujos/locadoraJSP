@@ -25,6 +25,10 @@ public class Classe {
 	public Classe(){
 		
 	}
+        
+        public int getId(){
+            return this.idClasse;
+        }
 
 	public String getNome() {
 		return nome;
@@ -49,5 +53,9 @@ public class Classe {
 	public void setPrazoDevolucao(String prazoDevolucao) {
 		this.prazoDevolucao = prazoDevolucao;
 	}
+        
+        public String toString(){
+            return this.nome;
+        }
 	
 }

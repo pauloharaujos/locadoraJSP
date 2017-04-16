@@ -20,6 +20,10 @@ public class Diretor {
 		
 		this.nome = nome;
 	}
+        
+        public int getId(){
+            return this.idDiretor;
+        }
 	
 	public Diretor(){
 		
@@ -32,6 +36,10 @@ public class Diretor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+        
+        public String toString(){
+            return this.nome;
+        }
 	
 	
 }

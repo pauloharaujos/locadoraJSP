@@ -15,9 +15,11 @@ import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
 
 public class AplCadastrarTitulo {
-	
+            
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
 
-	public static void inserirItem(String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores){
+	public static int inserirTitulo(String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores){
 		
 		Titulo t1 = null;
 		SessionFactory sf = null;
@@ -26,7 +28,7 @@ public class AplCadastrarTitulo {
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
 		t1 = new Titulo(nome, ano, sinopse, categoria, diretor, classe, atores); 
@@ -38,7 +40,7 @@ public class AplCadastrarTitulo {
 		  t.begin();
 		  s.save(t1);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -57,5 +59,6 @@ public class AplCadastrarTitulo {
 				s.close();
 			}
 		}
+        return -1;
 	}
 }
