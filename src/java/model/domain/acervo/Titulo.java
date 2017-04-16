@@ -108,5 +108,8 @@ public class Titulo {
 		this.classe = classe;
 	}
 	
+        public String toString(){
+            return this.nome;
+        }
 	
 }

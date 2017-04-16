@@ -1,3 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.domain.acervo.Titulo"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="Hibernate.ConexaoSessionFactory"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,7 +36,21 @@
                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Título</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="titulo" id="inputTitulo" >
+                      <select name="titulo" class="form-control">
+                          <%
+                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                              Session s = sf.openSession();
+                              Criteria c  = s.createCriteria(Titulo.class);
+                              List l = c.list();
+                              Iterator i = l.iterator();
+                              
+                              while(i.hasNext()){
+                                  Titulo t = (Titulo) i.next();
+                                  out.println("<option>"+t+"</option>");
+                              }
+                          
+                          %>
+                      </select>                
                 </div>
               </div>
 
@@ -53,7 +74,7 @@
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" name="operacao" value="incluirItem" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>
