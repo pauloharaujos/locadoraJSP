@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Classe {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idClasse;
 	private String nome;
 	private int valor;

@@ -43,7 +43,7 @@
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" name="cadastrar" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" name="operacao" value="incluirClasse" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>

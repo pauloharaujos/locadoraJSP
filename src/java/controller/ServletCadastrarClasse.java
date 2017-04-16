@@ -37,14 +37,22 @@ public class ServletCadastrarClasse extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String varNome = request.getParameter("nome");
+                String valor = request.getParameter("operacao");
+                String varNome = request.getParameter("nome");
 		String varValor = request.getParameter("valor");
 		String varData = request.getParameter("data");
 		String varOperacao = request.getParameter("cadastrar");
 		
-		System.out.println("OPERACAOOOOOOO : " + varOperacao);
-		
-		AplCadastrarClasse.inserirClasse(varNome, Integer.parseInt(varValor), varData);
+                if(valor.equals("incluirClasse")){
+			int r = AplCadastrarClasse.inserirClasse(varNome, Integer.parseInt(varValor), varData);
+			
+			if(r == AplCadastrarClasse.SUCESSO) {
+                            response.sendRedirect("msgCadastroSucesso.jsp");
+			}else{
+                            response.sendRedirect("msgCadastroError.jsp");
+                        }
+		}else if (valor.equals("alterarClasse")){
+			
+		}		
 	}
-
 }

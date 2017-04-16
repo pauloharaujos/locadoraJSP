@@ -54,6 +54,6 @@ public class AplCadastrarAtor {
 				s.close();                               
 			}
 		}
-            return SUCESSO;
+            return -1;
 	}
 }

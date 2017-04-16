@@ -10,8 +10,11 @@ import model.domain.acervo.Classe;
 
 
 public class AplCadastrarClasse {
+    
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
 
-public static void inserirClasse(String nome, int valor, String data){
+    public static int inserirClasse(String nome, int valor, String data){
 		
 		Classe c = null;
 		SessionFactory sf = null;
@@ -20,7 +23,7 @@ public static void inserirClasse(String nome, int valor, String data){
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
 		c = new Classe(nome, valor, data);
@@ -32,7 +35,7 @@ public static void inserirClasse(String nome, int valor, String data){
 		  t.begin();
 		  s.save(c);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -51,5 +54,6 @@ public static void inserirClasse(String nome, int valor, String data){
 				s.close();
 			}
 		}
+            return -1;
 	}
 }
