@@ -40,18 +40,18 @@ public class ServletCadastrarAtor extends HttpServlet {
 		
 		String valor = request.getParameter("operacao");
 		String varNome = request.getParameter("nome");
-		
-		AplCadastrarAtor.inserirAtor(varNome);
-		
-//		if(valor.equals("incluirAtor")){
-//			int r = AplCadastrarAtor.inserirAtor(varNome);
-//			
-//			if(r == AplCadastrar.SUCESSO) {
-//				Res
-//			}
-//		}else if (valor.equals("alterarAtor")){
-//			
-//		}
+				
+		if(valor.equals("incluirAtor")){
+			int r = AplCadastrarAtor.inserirAtor(varNome);
+			
+			if(r == AplCadastrarAtor.SUCESSO) {
+                            response.sendRedirect("msgCadastroSucesso.jsp");
+			}else{
+                            response.sendRedirect("msgCadastroError.jsp");
+                        }
+		}else if (valor.equals("alterarAtor")){
+			
+		}
 		
 	}
 

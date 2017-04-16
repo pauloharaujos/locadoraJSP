@@ -30,7 +30,7 @@
              
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" value="incluirAtor" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" value="incluirAtor" name="operacao" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>

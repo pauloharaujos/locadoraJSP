@@ -9,22 +9,23 @@ import Hibernate.ConexaoSessionFactory;
 import model.domain.acervo.Ator;
 
 public class AplCadastrarAtor {
+
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
 	
-	
-	public static void inserirAtor(String nome){
-		
-		Ator a = null;
+	public static int inserirAtor(String nome){
+		                
+                Ator a = null;
 		SessionFactory sf = null;
 		Session s = null;
 		Transaction t = null;
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
-		a = new Ator(nome);
-		a.setNome(nome);
+		a = new Ator(nome);		
 		
 		try{
 		 sf = ConexaoSessionFactory.getSessionFactory();
@@ -34,7 +35,7 @@ public class AplCadastrarAtor {
 		  t.begin();
 		  s.save(a);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -50,8 +51,9 @@ public class AplCadastrarAtor {
 			//return EXCEPTION_BANCO_DADOS;
 		}finally{
 			if(s != null) {
-				s.close();
+				s.close();                               
 			}
 		}
+            return SUCESSO;
 	}
 }
