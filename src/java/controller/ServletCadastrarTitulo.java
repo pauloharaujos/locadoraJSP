@@ -14,7 +14,7 @@ import model.application.cliente.AplCadastrarDependente;
 /**
  * Servlet implementation class ServletCadastrarItem
  */
-@WebServlet("/ServletCadastrarItem")
+@WebServlet("/ServletCadastrarTitulo")
 public class ServletCadastrarTitulo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

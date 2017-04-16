@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
 
-import Hibernate.ConexaoSessionFactory;
+import Hibernate.ConexaoSessionFactory; 
 import model.domain.acervo.Ator;
 
 public class AplCadastrarAtor {
@@ -27,7 +27,8 @@ public class AplCadastrarAtor {
 		a.setNome(nome);
 		
 		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();
+		 sf = ConexaoSessionFactory.getSessionFactory();
+                  //sf = HibernateUtil.getSessionFactory();
 		  s = sf.openSession();	
 		  t = s.getTransaction();
 		  t.begin();

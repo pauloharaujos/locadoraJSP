@@ -41,6 +41,19 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-
-    </session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/locadorapaulo</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">rootroot</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.DB2Dialect</property>
+    <mapping class="model.domain.acervo.Ator"/>
+    <mapping class="model.domain.acervo.Classe"/>
+    <mapping class="model.domain.acervo.Diretor"/>
+    <mapping class="model.domain.acervo.Item"/>
+    <mapping class="model.domain.acervo.Titulo"/>
+    <mapping class="model.domain.cliente.Cliente"/>
+    <mapping class="model.domain.cliente.Dependente"/>
+    <mapping class="model.domain.cliente.Locacao"/>
+    <mapping class="model.domain.cliente.Socio"/>
+  </session-factory>
 </hibernate-configuration>
