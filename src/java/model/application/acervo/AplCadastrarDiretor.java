@@ -10,8 +10,10 @@ import model.domain.acervo.Diretor;
 
 public class AplCadastrarDiretor {
 	
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
 	
-	public static void inserirDiretor(String nome){
+	public static int inserirDiretor(String nome){
 		
 		Diretor d = null;
 		SessionFactory sf = null;
@@ -20,7 +22,7 @@ public class AplCadastrarDiretor {
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
 		d = new Diretor(nome);
@@ -33,7 +35,7 @@ public class AplCadastrarDiretor {
 		  t.begin();
 		  s.save(d);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -52,5 +54,6 @@ public class AplCadastrarDiretor {
 				s.close();
 			}
 		}
-	}
+        return -1;
+	}     
 }

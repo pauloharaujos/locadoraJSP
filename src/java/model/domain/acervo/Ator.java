@@ -10,8 +10,8 @@ public class Ator {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private String nome;	
+    private int idAtor;
+    private String nome;	
 	
 	public Ator(String nome) {		
 		this.nome = nome;		

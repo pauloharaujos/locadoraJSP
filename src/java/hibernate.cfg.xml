@@ -45,7 +45,8 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/locadorapaulo</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">rootroot</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.DB2Dialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping class="model.domain.acervo.Ator"/>
     <mapping class="model.domain.acervo.Classe"/>
     <mapping class="model.domain.acervo.Diretor"/>

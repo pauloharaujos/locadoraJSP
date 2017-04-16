@@ -28,7 +28,7 @@
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" name="operacao" value="incluirDiretor" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>

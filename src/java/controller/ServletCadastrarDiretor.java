@@ -37,8 +37,20 @@ public class ServletCadastrarDiretor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String valor = request.getParameter("operacao");
 		String varNome = request.getParameter("nome");
-		AplCadastrarDiretor.inserirDiretor(varNome);
+				
+		if(valor.equals("incluirDiretor")){
+			int r = AplCadastrarDiretor.inserirDiretor(varNome);
+			
+			if(r == AplCadastrarDiretor.SUCESSO) {
+                            response.sendRedirect("msgCadastroSucesso.jsp");
+			}else{
+                            response.sendRedirect("msgCadastroError.jsp");
+                        }
+		}else if (valor.equals("alterarDiretor")){
+			
+		}
 	}
 
 }
