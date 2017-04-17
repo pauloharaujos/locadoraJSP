@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.acervo.AplCadastrarAtor;
+import model.application.acervo.AplCadastrarDiretor;
 
 import model.application.acervo.AplCadastrarItem;
 import model.application.acervo.AplCadastrarTitulo;
@@ -52,15 +53,17 @@ public class ServletCadastrarTitulo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String valor = request.getParameter("operacao");	
-            String varNome = request.getParameter("nome");
-	    String[] atores = request.getParameterValues("atores");
-            int varIdDiretor = Integer.parseInt(request.getParameter("diretor"));
-            String varCategoria = request.getParameter("categoria");
-            int varIdClasse = Integer.parseInt(request.getParameter("classe"));
-            int varAno = Integer.parseInt(request.getParameter("ano"));
-            String varSinopse = request.getParameter("sinopse");
+            
     				
 	    if(valor.equals("incluirTitulo")){
+                
+                    String varNome = request.getParameter("nome");
+                    String[] atores = request.getParameterValues("atores");
+                    int varIdDiretor = Integer.parseInt(request.getParameter("diretor"));
+                    String varCategoria = request.getParameter("categoria");
+                    int varIdClasse = Integer.parseInt(request.getParameter("classe"));
+                    int varAno = Integer.parseInt(request.getParameter("ano"));
+                    String varSinopse = request.getParameter("sinopse");
 		    
                     List listaAtores = new ArrayList();
                     Diretor diretor = null;
@@ -112,6 +115,31 @@ public class ServletCadastrarTitulo extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
 		}else if (valor.equals("alterarTitulo")){
+			
+		}else if (valor.equals("excluirTitulo")){
+                    int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
+                    
+                    Titulo titulo = null;
+                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                    Session s = sf.openSession();
+                    Criteria c  = s.createCriteria(Titulo.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Titulo t1 = (Titulo) i.next();
+                        int id = t1.getId();
+
+                        if((id == varIdTitulo))
+                            titulo = t1;                   
+                    }                      
+                    int r = AplCadastrarTitulo.excluirTitulo(titulo);
+			
+                    if(r == AplCadastrarTitulo.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
 			
 		}
 	}

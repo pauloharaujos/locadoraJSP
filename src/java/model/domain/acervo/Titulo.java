@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,21 +21,21 @@ public class Titulo {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int idTitulo;
+    private int idTitulo;
 	private String nome;
 	private int ano;
 	private String sinopse;
 	private String categoria;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Ator> atores;	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Ator> atores = new ArrayList();	
 	
 	@ManyToOne 
-    @JoinColumn(name = "idDiretor", nullable = false, updatable = true)
+        @JoinColumn(name = "idDiretor", nullable = false, updatable = true)
 	private Diretor diretor;
 	
 	@ManyToOne 
-    @JoinColumn(name = "idClasse", nullable = false, updatable = true)
+        @JoinColumn(name = "idClasse", nullable = false, updatable = true)
 	private Classe classe;
 	
 	public Titulo(String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores) {

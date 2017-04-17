@@ -4,14 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ator")
 public class Ator {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idAtor;
-    private String nome;	
+    private String nome;      
 	
 	public Ator(String nome) {		
 		this.nome = nome;		

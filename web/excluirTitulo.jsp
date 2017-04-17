@@ -1,3 +1,10 @@
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="model.domain.acervo.Titulo"%>
+<%@page import="Hibernate.ConexaoSessionFactory"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,21 +28,33 @@
             <form class="form-horizontal" method="POST" action="#">            
             	
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nome do Titulo</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Joao Almeida">                    
+                      <select name="titulo" class="form-control">
+                          <%
+                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                              Session s = sf.openSession();
+                              Criteria c  = s.createCriteria(Titulo.class);
+                              List l = c.list();
+                              Iterator i = l.iterator();
+                              
+                              while(i.hasNext()){
+                                  Titulo t1 = (Titulo) i.next();
+                                  int id = t1.getId();
+                                  out.println("<option value='"+ id +"' >" +t1+"</option>");
+                              }                          
+                          %>
+                      </select>                
                 </div>
-              </div>
-                                    
+              </div>               
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> Pesquisar</button>
-                  <button type="submit" class="btn btn-default">Excluir</button>
+                  <button type="submit" name="operacao" value="excluirTitulo" class="btn btn-default">Excluir</button>
                 </div>
               </div>
               </form>
-    		</div>
+    </div>
 
     		<div id="footer" class="col-md-12">
     		    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
