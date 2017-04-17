@@ -51,8 +51,7 @@ public class ServletCadastrarDependente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 String valor = request.getParameter("operacao");	
-                String varNome = request.getParameter("nome");
-		int varInscricao = Integer.parseInt(request.getParameter("inscricao"));
+                String varNome = request.getParameter("nome");		
 		String varDtNasc = request.getParameter("dtNasc");		
 		int varAtivo = Integer.parseInt(request.getParameter("ativo"));
 		String varSexo = request.getParameter("sexo");
@@ -70,12 +69,12 @@ public class ServletCadastrarDependente extends HttpServlet {
 
                     while(i.hasNext()){
                         Socio so = (Socio) i.next();
-                        int id = so.getId();
+                        int id = so.getNumIncricao();
 
                         if(id == varIdSocio)
                             socio = so;
                     }    
-                   int r = AplCadastrarDependente.inserirDependente(varNome, varInscricao, varDtNasc, varSexo, varAtivo, socio);
+                   int r = AplCadastrarDependente.inserirDependente(varNome, varDtNasc, varSexo, varAtivo, socio);
 			
                     if(r == AplCadastrarDependente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");

@@ -9,8 +9,11 @@ import Hibernate.ConexaoSessionFactory;
 import model.domain.cliente.Socio;
 
 public class AplCadastrarSocio {
+    
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
 	
-	public static void inserirSocio(String nome, int inscricao, String dtNascimento, String sexo, int estahAtivo, String cpf, String endereco, String tel){
+	public static int inserirSocio(String nome, String dtNascimento, String sexo, int estahAtivo, String cpf, String endereco, String tel){
 		
 		Socio s1 = null;
 		SessionFactory sf = null;
@@ -19,10 +22,10 @@ public class AplCadastrarSocio {
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
-		s1 = new Socio(nome, inscricao, dtNascimento, sexo, estahAtivo, cpf, endereco, tel);
+		s1 = new Socio(nome, dtNascimento, sexo, estahAtivo, cpf, endereco, tel);
 				
 		try{
 		  sf = ConexaoSessionFactory.getSessionFactory();
@@ -31,7 +34,7 @@ public class AplCadastrarSocio {
 		  t.begin();
 		  s.save(s1);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -50,5 +53,6 @@ public class AplCadastrarSocio {
 				s.close();
 			}
 		}
+        return -1;
 	}
 }

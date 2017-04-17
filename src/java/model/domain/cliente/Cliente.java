@@ -25,9 +25,8 @@ public class Cliente {
 	
 	@Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-	private int idCliente;
-	private String nome;
 	private int numIncricao;
+	private String nome;        
 	private String dtNascimento;
 	private String sexo;
 	private int estahAtivo;	
@@ -37,10 +36,9 @@ public class Cliente {
 //	private List<Locacao> locacoes;
 	
 	
-	public Cliente(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo) {
+            public Cliente(String nome, String dtNascimento, String sexo, int estahAtivo) {
 		
-		this.nome = nome;
-		this.numIncricao = numIncricao;
+		this.nome = nome;		
 		this.dtNascimento = dtNascimento;
 		this.sexo = sexo;
 		this.estahAtivo = estahAtivo;
@@ -49,11 +47,7 @@ public class Cliente {
 	
 	public Cliente(){
 		
-	}
-        
-        public int getId(){
-            return this.idCliente;
-        }
+	}        
 
 	public String getNome() {
 		return nome;

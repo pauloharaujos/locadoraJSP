@@ -7,17 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name="idCliente")
+@PrimaryKeyJoinColumn(name="numInscricao")
 public class Socio extends Cliente{
-	
 
-//	private int idSocio;
 	private String cpf;
 	private String endereco;
 	private String tel;
 	
-	public Socio(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo, String cpf, String endereco, String tel) {
-		super(nome, numIncricao, dtNascimento, sexo, estahAtivo);
+	public Socio(String nome, String dtNascimento, String sexo, int estahAtivo, String cpf, String endereco, String tel) {
+		super(nome, dtNascimento, sexo, estahAtivo);
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.tel = tel;

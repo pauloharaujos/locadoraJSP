@@ -15,7 +15,7 @@ public class AplCadastrarDependente {
     public static int SUCESSO = 1;
     public static int ERRO_VALIDACAO_DADOS = 0;
     
-    public static int inserirDependente(String nome, int numInscricao, String dtNascimento, String sexo, int estahAtivo, Socio socio){
+    public static int inserirDependente(String nome, String dtNascimento, String sexo, int estahAtivo, Socio socio){
 		
 		Dependente d1 = null;
 		SessionFactory sf = null;
@@ -27,7 +27,7 @@ public class AplCadastrarDependente {
                     return ERRO_VALIDACAO_DADOS;			
 		}
 		
-		d1 = new Dependente(nome, numInscricao, dtNascimento, sexo, estahAtivo, socio);
+		d1 = new Dependente(nome, dtNascimento, sexo, estahAtivo, socio);
 				
 		try{
 		  sf = ConexaoSessionFactory.getSessionFactory();

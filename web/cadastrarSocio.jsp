@@ -41,13 +41,20 @@
                     <input type="text" class="form-control" name="endereco" id="inputEndereco" placeholder="Avenida Angelo Giuberti, nº 375">
                 </div>
               </div>
-              
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Inscrição</label>
+                
+               <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Telefone</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="inscricao" id="inputInscricao" placeholder="313213.3232">
+                    <input type="text" class="form-control" name="telefone" id="inputTelefone" placeholder="(27) 99999-9999">
                 </div>
               </div>
+              
+<!--              <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Inscrição</label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" name="inscricao" id="inputInscricao" placeholder="313213.3232">
+                </div>
+              </div>-->
               
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Data de Nascimento</label>
@@ -57,26 +64,31 @@
               </div>
               
                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Sexo</label>
+                  <label for="inputSexo" class="col-sm-2 control-label">Sexo</label>
                   <div class="col-sm-10">
-                     <label><input type="checkbox" name="masculino" value="masculino"> Masculino</label>
-                     <label><input type="checkbox" name="feminino"value="feminino"> Feminino</label>	                    					   
-				 </div>
-                </div>                 
+                     <select name="sexo" class="form-control">
+                          <option value="masculino">Masculino</option>
+                          <option value="feminino">Feminino</option>
+                      </select>		                    					   
+		  </div>
+                </div>
+                 
               
               <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Ativo ?</label>
+                  <label for="inputAtivo" class="col-sm-2 control-label">Ativo ?</label>
                   <div class="col-sm-10">
-                     <label><input type="checkbox" name="sim" value="sim"> Sim</label>
-                     <label><input type="checkbox" name="nao" value="nao"> Não</label>	                    					   
-				 </div>
+                      <select name="ativo" class="form-control">
+                          <option value="1">Sim</option>
+                          <option value="0">Não</option>
+                      </select>	                    					   
+		  </div>
                 </div>
               </div>         
             </div>  
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" name="operacao" value="incluirSocio" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>

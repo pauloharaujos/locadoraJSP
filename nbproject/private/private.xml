@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/acervo/AplCadastrarItem.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/cadastrarTitulo.jsp</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/acervo/AplCadastrarTitulo.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarItem.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/cadastrarItem.jsp</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarTitulo.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarDependente.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarSocio.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/cadastrarSocio.jsp</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/cliente/AplCadastrarSocio.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/domain/cliente/Socio.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/cadastrarDependente.jsp</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/domain/cliente/Dependente.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/domain/cliente/Cliente.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/cliente/AplCadastrarDependente.java</file>
         </group>
     </open-files>
 </project-private>

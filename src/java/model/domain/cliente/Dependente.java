@@ -8,14 +8,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name="idDependente")
+@PrimaryKeyJoinColumn(name="numInscricao")
 public class Dependente extends Cliente{
 	
 	@ManyToOne
 	private Socio socio;
 
-	public Dependente(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo, Socio socio) {
-		super(nome, numIncricao, dtNascimento, sexo, estahAtivo);
+	public Dependente(String nome,  String dtNascimento, String sexo, int estahAtivo, Socio socio) {
+		super(nome, dtNascimento, sexo, estahAtivo);
 		this.socio = socio;
 	}
 	
