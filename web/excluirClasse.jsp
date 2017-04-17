@@ -1,3 +1,11 @@
+<%@page import="Hibernate.ConexaoSessionFactory"%>
+<%@page import="java.util.List"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.domain.acervo.Classe"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,25 +25,37 @@
 	<div class="container">
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> EXCLUIR ATOR</h2>
-            <form class="form-horizontal" method="POST" action="#">            
-            	
-              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
+			<h2 align="center"> EXCLUIR CLASSE</h2>
+            <form class="form-horizontal" method="POST" action="ServletCadastrarClasse">            
+            
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Nome da Classe</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Joao Almeida">                    
+                      <select name="classe" class="form-control">
+                          <%
+                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                              Session s = sf.openSession();
+                              Criteria c  = s.createCriteria(Classe.class);
+                              List l = c.list();
+                              Iterator i = l.iterator();
+                              
+                              while(i.hasNext()){
+                                  Classe c1 = (Classe) i.next();
+                                  int id = c1.getId();
+                                  out.println("<option value='"+ id +"' >" +c1+"</option>");
+                              }                          
+                          %>
+                      </select>                
                 </div>
-              </div>
-                                    
+              </div>                                    
 
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> Pesquisar</button>
-                  <button type="submit" class="btn btn-default">Excluir</button>
+                <div class="col-sm-offset-2 col-sm-10">                
+                  <button type="submit" name="operacao" value="excluirClasse" class="btn btn-default">Excluir</button>
                 </div>
               </div>
               </form>
-    		</div>
+    	</div>
 
     		<div id="footer" class="col-md-12">
     		    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
