@@ -1,14 +1,21 @@
 package controller;
 
+import Hibernate.ConexaoSessionFactory;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.application.acervo.AplCadastrarAtor;
 import model.application.acervo.AplCadastrarDiretor;
+import model.domain.acervo.Ator;
+import model.domain.acervo.Diretor;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  * Servlet implementation class ServletCadastrarDiretor
@@ -38,9 +45,10 @@ public class ServletCadastrarDiretor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String valor = request.getParameter("operacao");
-		String varNome = request.getParameter("nome");
+		
 				
 		if(valor.equals("incluirDiretor")){
+                    String varNome = request.getParameter("nome");
 			int r = AplCadastrarDiretor.inserirDiretor(varNome);
 			
 			if(r == AplCadastrarDiretor.SUCESSO) {
@@ -50,6 +58,30 @@ public class ServletCadastrarDiretor extends HttpServlet {
                         }
 		}else if (valor.equals("alterarDiretor")){
 			
+		}else if (valor.equals("excluirDiretor")){
+                    int varIdDiretor = Integer.parseInt(request.getParameter("diretor"));
+                    
+                    Diretor diretor = null;
+                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                    Session s = sf.openSession();
+                    Criteria c  = s.createCriteria(Diretor.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Diretor d1 = (Diretor) i.next();
+                        int id = d1.getId();
+
+                        if((id == varIdDiretor))
+                            diretor = d1;                   
+                    }                      
+                    int r = AplCadastrarDiretor.excluirDiretor(diretor);
+			
+                    if(r == AplCadastrarDiretor.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
 		}
 	}
 
