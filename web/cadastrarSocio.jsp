@@ -49,13 +49,6 @@
                 </div>
               </div>
               
-<!--              <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Inscrição</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" name="inscricao" id="inputInscricao" placeholder="313213.3232">
-                </div>
-              </div>-->
-              
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Data de Nascimento</label>
                   <div class="col-sm-10">
