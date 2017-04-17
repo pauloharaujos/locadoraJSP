@@ -57,10 +57,10 @@
               <div class="form-group">
                 <label for="inputTipo" class="col-sm-2 control-label">Tipo</label>
                 <div class="col-sm-10">
-                  <select class="form-control">
-                    <option>Fita</option>
-                    <option>DVD</option>
-                    <option>BlueRay</option>                  
+                  <select name="tipo" class="form-control">
+                    <option value="fita">Fita</option>
+                    <option value="dvd">DVD</option>
+                    <option value="blueray">BlueRay</option>                  
                   </select>
                 </div>
               </div>

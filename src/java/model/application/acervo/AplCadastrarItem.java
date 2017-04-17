@@ -46,7 +46,7 @@ public class AplCadastrarItem {
 			System.err.println("/*----------------------ERRO------------------*");
 			
 			if(t != null) {
-				t.rollback();
+			    t.rollback();
 			}
 			
 			//return EXCEPTION_BANCO_DADOS;
