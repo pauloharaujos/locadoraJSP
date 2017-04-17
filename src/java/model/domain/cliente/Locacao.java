@@ -19,7 +19,7 @@ import model.domain.acervo.Item;
 public class Locacao {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idLocacao;
 	private String dtLocacao;
 	private String dtDevolucaoPrevista;

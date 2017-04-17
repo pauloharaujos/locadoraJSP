@@ -24,7 +24,7 @@ import org.hibernate.annotations.FetchMode;
 public class Cliente {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCliente;
 	private String nome;
 	private int numIncricao;
@@ -50,6 +50,10 @@ public class Cliente {
 	public Cliente(){
 		
 	}
+        
+        public int getId(){
+            return this.idCliente;
+        }
 
 	public String getNome() {
 		return nome;
@@ -99,6 +103,8 @@ public class Cliente {
 		this.locacoes = locacoes;
 	}
 	
-	
+	public String toString(){
+            return this.nome;
+        }
 
 }

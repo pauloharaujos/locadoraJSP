@@ -7,11 +7,15 @@ import org.hibernate.Session;
 
 import Hibernate.ConexaoSessionFactory;
 import model.domain.cliente.Dependente;
+import model.domain.cliente.Socio;
 
 
 public class AplCadastrarDependente {
 	
-public static void inserirDependente(String nome, int numInscricao, String dtNascimento, String sexo, int estahAtivo){
+    public static int SUCESSO = 1;
+    public static int ERRO_VALIDACAO_DADOS = 0;
+    
+    public static int inserirDependente(String nome, int numInscricao, String dtNascimento, String sexo, int estahAtivo, Socio socio){
 		
 		Dependente d1 = null;
 		SessionFactory sf = null;
@@ -20,10 +24,10 @@ public static void inserirDependente(String nome, int numInscricao, String dtNas
 		
 		
 		if ("".equals(nome)) {
-			//return ERRO_VALIDACAO_DADOS;			
+                    return ERRO_VALIDACAO_DADOS;			
 		}
 		
-		d1 = new Dependente(nome, numInscricao, dtNascimento, sexo, estahAtivo);
+		d1 = new Dependente(nome, numInscricao, dtNascimento, sexo, estahAtivo, socio);
 				
 		try{
 		  sf = ConexaoSessionFactory.getSessionFactory();
@@ -32,7 +36,7 @@ public static void inserirDependente(String nome, int numInscricao, String dtNas
 		  t.begin();
 		  s.save(d1);
 		  t.commit(); 
-		  //return SUCESSO;
+		  return SUCESSO;
 		}catch(HibernateException e){
 			System.err.println("/*----------------------ERRO------------------*");
 			System.err.println(e.getMessage());
@@ -51,5 +55,6 @@ public static void inserirDependente(String nome, int numInscricao, String dtNas
 				s.close();
 			}
 		}
+        return -1;
 	}
 }

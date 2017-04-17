@@ -18,9 +18,9 @@ public class Dependente extends Cliente{
 	@ManyToOne
 	private Socio socio;
 
-	public Dependente(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo) {
+	public Dependente(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo, Socio socio) {
 		super(nome, numIncricao, dtNascimento, sexo, estahAtivo);
-		// TODO Auto-generated constructor stub
+		this.socio = socio;
 	}
 	
 	public Dependente(){

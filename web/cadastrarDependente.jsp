@@ -1,3 +1,11 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="org.hibernate.SessionFactory"%>
+<%@page import="model.domain.cliente.Socio"%>
+<%@page import="Hibernate.ConexaoSessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,25 +54,50 @@
                <div class="form-group">
                   <label for="inputSexo" class="col-sm-2 control-label">Sexo</label>
                   <div class="col-sm-10">
-                     <label><input type="checkbox" value="masculino"> Masculino</label>
-                     <label><input type="checkbox" value="feminino"> Feminino</label>	                    					   
-					 </div>
+                     <select name="sexo" class="form-control">
+                          <option value="masculino">Masculino</option>
+                          <option value="feminino">Feminino</option>
+                      </select>		                    					   
+		  </div>
                 </div>
                  
               
               <div class="form-group">
-                  <label for="inputAtivo" class="col-sm-2 control-label">Ativo  ?</label>
+                  <label for="inputAtivo" class="col-sm-2 control-label">Ativo ?</label>
                   <div class="col-sm-10">
-                     <label><input type="checkbox" value="masculino"> Sim</label>
-                     <label><input type="checkbox" value="feminino"> Não</label>	                    					   
-					 </div>
+                      <select name="ativo" class="form-control">
+                          <option value="1">Sim</option>
+                          <option value="0">Não</option>
+                      </select>	                    					   
+		  </div>
                 </div>
-              </div>         
+                
+                <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Sócio</label>
+                <div class="col-sm-10">
+                    <select name="socio" class="form-control">
+                          <%
+                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                              Session s = sf.openSession();
+                              Criteria c  = s.createCriteria(Socio.class);
+                              List l = c.list();
+                              Iterator i = l.iterator();
+                              
+                              while(i.hasNext()){
+                                  Socio so = (Socio) i.next();
+                                  int id = so.getId();
+                                  out.println("<option value='"+ id +"' >" +so+"</option>");
+                              }                          
+                          %>
+                      </select> 
+                </div>
+              </div>              
+              </div>                    
            </div>  
-
+                      
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Cadastrar</button>
+                  <button type="submit" name="operacao" value="incluirDependente" class="btn btn-default">Cadastrar</button>
                 </div>
               </div>
               </form>
