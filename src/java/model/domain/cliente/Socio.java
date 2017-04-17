@@ -7,11 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn
+@PrimaryKeyJoinColumn(name="idCliente")
 public class Socio extends Cliente{
 	
-//	@Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+
 //	private int idSocio;
 	private String cpf;
 	private String endereco;

@@ -26,6 +26,10 @@ public class Locacao {
 	private String dtDevolucaoEfetiva;
 	private int valorCobrado;
 	private int multaCobrada;
+        
+        @ManyToOne
+	@JoinColumn(name="idCliente")
+        private Cliente cliente;
 	
 	@ManyToOne
 	@JoinColumn(name="idItem")

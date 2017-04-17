@@ -31,10 +31,10 @@ public class Cliente {
 	private String dtNascimento;
 	private String sexo;
 	private int estahAtivo;	
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)    
-	private List<Locacao> locacoes;
+//	
+//	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+//	@Fetch(value = FetchMode.SUBSELECT)    
+//	private List<Locacao> locacoes;
 	
 	
 	public Cliente(String nome, int numIncricao, String dtNascimento, String sexo, int estahAtivo) {
@@ -44,7 +44,7 @@ public class Cliente {
 		this.dtNascimento = dtNascimento;
 		this.sexo = sexo;
 		this.estahAtivo = estahAtivo;
-		this.locacoes = new ArrayList();
+		//this.locacoes = new ArrayList();
 	}
 	
 	public Cliente(){
@@ -95,13 +95,13 @@ public class Cliente {
 		this.estahAtivo = estahAtivo;
 	}
 		
-	public List<Locacao> getLocacoes() {
-		return locacoes;
-	}
-
-	public void setLocacoes(List<Locacao> locacoes) {
-		this.locacoes = locacoes;
-	}
+//	public List<Locacao> getLocacoes() {
+//		return locacoes;
+//	}
+//
+//	public void setLocacoes(List<Locacao> locacoes) {
+//		this.locacoes = locacoes;
+//	}
 	
 	public String toString(){
             return this.nome;

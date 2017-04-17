@@ -8,12 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn
+@PrimaryKeyJoinColumn(name="idDependente")
 public class Dependente extends Cliente{
-	
-//	@Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//	private int idDependente;
 	
 	@ManyToOne
 	private Socio socio;
