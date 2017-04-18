@@ -15,6 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.acervo.AplCadastrarAtor;
+import model.domain.acervo.Ator;
+import model.domain.cliente.Cliente;
 import model.domain.cliente.Socio;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -131,8 +134,31 @@ public class ServletCadastrarCliente extends HttpServlet {
                     }             
 			
 		}else if (valor.equals("excluirCliente")){
+		    int varIdAtor = Integer.parseInt(request.getParameter("cliente"));
+                    
+                    Cliente cliente = null;
+                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                    Session s = sf.openSession();
+                    Criteria c  = s.createCriteria(Cliente.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Cliente c1 = (Cliente) i.next();
+                        int id = c1.getNumIncricao();
+
+                        if((id == varIdAtor))
+                            cliente = c1;                   
+                    }                      
+                    int r = AplCadastrarCliente.excluirCliente(cliente);
 			
-		}
+                    if(r == AplCadastrarCliente.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
+                }
+		
     }
 
     /**
