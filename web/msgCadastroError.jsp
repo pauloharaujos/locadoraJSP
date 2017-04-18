@@ -22,7 +22,7 @@
     <div class="container">
 
         <div class="col-md-12 jumbotron">
-			<h2 align="center"> ERRO AO CADASTRAR !</h2>		
+			<h2 align="center"> ERRO NA SOLICITAÇÃO !</h2>		
            
     		</div>
 

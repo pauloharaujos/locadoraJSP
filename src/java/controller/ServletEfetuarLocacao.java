@@ -15,9 +15,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.acervo.AplCadastrarDiretor;
 import model.application.cliente.AplEfetuarLocacao;
+import model.domain.acervo.Diretor;
 import model.domain.acervo.Item;
 import model.domain.cliente.Cliente;
+import model.domain.cliente.Locacao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -130,9 +133,34 @@ public class ServletEfetuarLocacao extends HttpServlet {
                         }
 		}else if (valor.equals("alterarLocacao")){
 			
-		}else if (valor.equals("excluirLocacao")){
- 
+		}else if (valor.equals("cancelarLocacao")){
+                
+                    int varIdLocacao = Integer.parseInt(request.getParameter("locacao"));
+                    
+                    Locacao locacao = null;
+                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                    Session s = sf.openSession();
+                    Criteria c  = s.createCriteria(Locacao.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Locacao d1 = (Locacao) i.next();
+                        int id = d1.getId();
+
+                        if((id == varIdLocacao))
+                            locacao = d1;                   
+                    }       
+                    s.close();
+                    int r = AplEfetuarLocacao.cancelarLocacao(locacao);
+			
+                    if(r == AplEfetuarLocacao.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
 		}
+		
     }          
     
     /**

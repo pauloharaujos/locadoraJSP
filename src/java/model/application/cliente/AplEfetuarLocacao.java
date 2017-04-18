@@ -6,6 +6,7 @@
 package model.application.cliente;
 
 import Hibernate.ConexaoSessionFactory;
+import static model.application.cliente.AplCadastrarCliente.SUCESSO;
 import model.domain.acervo.Diretor;
 import model.domain.acervo.Item;
 import model.domain.cliente.Cliente;
@@ -67,5 +68,40 @@ public class AplEfetuarLocacao {
 		}
         return -1;
 	}  
+        
+        public static int cancelarLocacao(Locacao locacao){
+		                        
+		SessionFactory sf = null;
+		Session s = null;
+		Transaction t = null;
+						
+		try{
+		 sf = ConexaoSessionFactory.getSessionFactory();                 
+		  s = sf.openSession();	
+		  t = s.getTransaction();
+		  t.begin();
+		  s.delete(locacao);
+		  t.commit(); 
+		  return SUCESSO;
+		}catch(HibernateException e){
+			System.err.println("/*----------------------ERRO------------------*");
+			System.err.println(e.getMessage());
+			System.err.println(e.getMessage());
+			System.err.println("*-----------------------*");
+			System.err.println(e.toString());
+			System.err.println("/*----------------------ERRO------------------*");
+			
+			if(t != null) {
+				t.rollback();
+			}
+			
+			//return EXCEPTION_BANCO_DADOS;
+		}finally{
+			if(s != null) {
+				s.close();                               
+			}
+		}
+            return -1;
+	}
     
 }

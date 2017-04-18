@@ -22,7 +22,7 @@
     <div class="container">
 
         <div class="col-md-12 jumbotron">
-			<h2 align="center"> CADASTRO EFETUADO COM SUCESSO !</h2>		
+			<h2 align="center"> OPERAÇÃO REALIZADA COM SUCESSO !</h2>		
            
     		</div>
 

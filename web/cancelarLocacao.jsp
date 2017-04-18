@@ -24,8 +24,8 @@
 	<div class="container">
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CANCELAR LOCAÇÂO</h2>
-            <form class="form-horizontal" method="POST" action="#">            
+			<h2 align="center"> CANCELAR LOCAÇÃO</h2>
+            <form class="form-horizontal" method="POST" action="ServletEfetuarLocacao">            
             	
           <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Locacao</label>

@@ -103,5 +103,7 @@ public class Locacao {
 		this.item = item;
 	}
 	
-	
+	public String toString(){
+            return Integer.toString(this.idLocacao);
+        }
 }
