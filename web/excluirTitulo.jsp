@@ -25,7 +25,7 @@
         <div class="col-md-12 jumbotron">
         
 			<h2 align="center"> EXCLUIR TITULO</h2>
-            <form class="form-horizontal" method="POST" action="#">            
+            <form class="form-horizontal" method="POST" action="ServletCadastrarTitulo">            
             	
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nome do Titulo</label>
@@ -35,6 +35,7 @@
                               SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
                               Session s = sf.openSession();
                               Criteria c  = s.createCriteria(Titulo.class);
+                              c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                               List l = c.list();
                               Iterator i = l.iterator();
                               

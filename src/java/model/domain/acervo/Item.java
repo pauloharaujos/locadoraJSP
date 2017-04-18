@@ -24,7 +24,7 @@ import model.domain.cliente.Locacao;
 public class Item {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.AUTO)
 	private int idItem;
 	private int numSerie;
 	private String dtAquisicao;
@@ -34,7 +34,7 @@ public class Item {
         @JoinColumn(name = "idTitulo", nullable = false, updatable = true)
 	private Titulo titulo;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Locacao> locacoes;
 	

@@ -8,11 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import Hibernate.ConexaoSessionFactory;
-import static model.application.acervo.AplCadastrarDiretor.SUCESSO;
-import model.domain.acervo.Ator;
 import model.domain.acervo.Classe;
 import model.domain.acervo.Diretor;
-import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
 
 public class AplCadastrarTitulo {
@@ -70,8 +67,8 @@ public class AplCadastrarTitulo {
 		Transaction t = null;
 						
 		try{
-		 sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();	
+		  sf = ConexaoSessionFactory.getSessionFactory();                 
+		  s = sf.openSession();                  
 		  t = s.getTransaction();
 		  t.begin();
 		  s.delete(titulo);
