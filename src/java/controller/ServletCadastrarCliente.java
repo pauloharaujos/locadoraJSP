@@ -134,7 +134,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                     }             
 			
 		}else if (valor.equals("excluirCliente")){
-		    int varIdAtor = Integer.parseInt(request.getParameter("cliente"));
+		    int varIdCliente = Integer.parseInt(request.getParameter("cliente"));
                     
                     Cliente cliente = null;
                     SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
@@ -147,7 +147,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                         Cliente c1 = (Cliente) i.next();
                         int id = c1.getNumIncricao();
 
-                        if((id == varIdAtor))
+                        if((id == varIdCliente))
                             cliente = c1;                   
                     }                      
                     int r = AplCadastrarCliente.excluirCliente(cliente);

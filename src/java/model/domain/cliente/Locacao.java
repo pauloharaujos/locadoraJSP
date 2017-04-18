@@ -36,7 +36,7 @@ public class Locacao {
 	private Item item;
 	
 	public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
-			int valorCobrado, int multaCobrada, Item item) {
+			int valorCobrado, int multaCobrada, Item item, Cliente cliente) {
 	
 		this.dtLocacao = dtLocacao;
 		this.dtDevolucaoPrevista = dtDevolucaoPrevista;
@@ -44,6 +44,7 @@ public class Locacao {
 		this.valorCobrado = valorCobrado;
 		this.multaCobrada = multaCobrada;
 		this.item = item;
+                this.cliente = cliente;
 	}
 	
 	public Locacao(){

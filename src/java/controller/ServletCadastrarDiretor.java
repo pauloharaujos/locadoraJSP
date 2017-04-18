@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.application.acervo.AplCadastrarDiretor;
-import model.domain.acervo.Ator;
 import model.domain.acervo.Diretor;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
