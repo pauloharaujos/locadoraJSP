@@ -43,9 +43,10 @@
                                   Diretor d1 = (Diretor) i.next();
                                   int id = d1.getId();
                                   out.println("<option value='"+ id +"' >" +d1+"</option>");
-                              }                          
+                              }   
+                              s.close();
                           %>
-                          s.close();
+                          
                       </select>                
                 </div>
               </div>                                    
