@@ -73,7 +73,8 @@ public class ServletCadastrarDiretor extends HttpServlet {
 
                         if((id == varIdDiretor))
                             diretor = d1;                   
-                    }                      
+                    }       
+                    s.close();
                     int r = AplCadastrarDiretor.excluirDiretor(diretor);
 			
                     if(r == AplCadastrarDiretor.SUCESSO) {

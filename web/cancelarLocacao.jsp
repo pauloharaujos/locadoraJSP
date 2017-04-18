@@ -43,7 +43,8 @@
                                   Locacao i1 = (Locacao) i.next();
                                   int id = i1.getId();
                                   out.println("<option value='"+ id +"' >" +i1+"</option>");
-                              }                          
+                              }   
+                              s.close();
                           %>
                       </select>                
                 </div>

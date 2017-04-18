@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.application.cliente;
-
+package controller;
+        
 import Hibernate.ConexaoSessionFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.acervo.AplCadastrarAtor;
+import model.application.cliente.AplCadastrarCliente;
 import model.domain.acervo.Ator;
 import model.domain.cliente.Cliente;
 import model.domain.cliente.Socio;
@@ -108,6 +109,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                         if(id == varIdSocio)
                             socio = so;
                     }    
+                    s.close();
                    int r = AplCadastrarCliente.inserirDependente(varNome, varDtNasc, varSexo, varAtivo, socio);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {
@@ -149,7 +151,8 @@ public class ServletCadastrarCliente extends HttpServlet {
 
                         if((id == varIdCliente))
                             cliente = c1;                   
-                    }                      
+                    }       
+                    s.close();
                     int r = AplCadastrarCliente.excluirCliente(cliente);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {

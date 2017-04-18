@@ -70,6 +70,7 @@ public class ServletCadastrarItem extends HttpServlet {
                         if((id == varIdTitulo))
                             titulo = t;                   
                     }       
+                    s.close();
 
                    int r = AplCadastrarItem.inserirItem(varNumSerie, varDtAq, varTipo, titulo);
 			
@@ -94,7 +95,8 @@ public class ServletCadastrarItem extends HttpServlet {
 
                         if((id == varIdItem))
                             item = i1;                   
-                    }                      
+                    }     
+                    s.close();
                     int r = AplCadastrarItem.excluirItem(item);
 			
                     if(r == AplCadastrarItem.SUCESSO) {

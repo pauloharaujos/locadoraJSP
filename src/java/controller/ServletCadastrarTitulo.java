@@ -81,7 +81,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
 
                         if(comparaAtor(id, atores) == 1)
                             listaAtores.add(a);
-                    }       
+                    }                    
                     
                     c  = s.createCriteria(Diretor.class);
                     l = c.list();
@@ -106,6 +106,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                         if((id == varIdClasse))
                             classe = c1;                   
                     }       
+                    s.close();
 
                    int r = AplCadastrarTitulo.inserirTitulo(varNome, varAno, varSinopse, varCategoria, diretor, classe, listaAtores);
 			
@@ -132,7 +133,8 @@ public class ServletCadastrarTitulo extends HttpServlet {
 
                         if((id == varIdTitulo))
                             titulo = t1;                   
-                    }                      
+                    }  
+                    s.close();                    
                     int r = AplCadastrarTitulo.excluirTitulo(titulo);
 			
                     if(r == AplCadastrarTitulo.SUCESSO) {

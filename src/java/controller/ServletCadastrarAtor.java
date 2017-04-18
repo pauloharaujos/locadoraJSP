@@ -76,7 +76,8 @@ public class ServletCadastrarAtor extends HttpServlet {
 
                         if((id == varIdAtor))
                             ator = a;                   
-                    }                      
+                    }           
+                    s.close();
                     int r = AplCadastrarAtor.excluirAtor(ator);
 			
                     if(r == AplCadastrarAtor.SUCESSO) {

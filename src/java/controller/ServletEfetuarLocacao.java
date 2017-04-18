@@ -120,7 +120,7 @@ public class ServletEfetuarLocacao extends HttpServlet {
                         if((id == varIdCliente))
                             cliente = c1;                   
                     }           
-                    
+                     s.close();
                     int r = AplEfetuarLocacao.inserirLocacao("18/04/2017", varData, "", varValor, 0, item, cliente);
 			
 			if(r == AplEfetuarLocacao.SUCESSO) {
