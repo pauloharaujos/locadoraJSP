@@ -41,6 +41,7 @@
                               SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
                               Session s = sf.openSession();
                               Criteria c  = s.createCriteria(Titulo.class);
+                              c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                               List l = c.list();
                               Iterator i = l.iterator();
                               
