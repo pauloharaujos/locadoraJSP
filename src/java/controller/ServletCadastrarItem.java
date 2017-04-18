@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.application.acervo.AplCadastrarAtor;
 
 import model.application.acervo.AplCadastrarItem;
-import model.application.cliente.AplCadastrarDependente;
+import model.application.cliente.AplCadastrarCliente;
 import model.domain.acervo.Titulo;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

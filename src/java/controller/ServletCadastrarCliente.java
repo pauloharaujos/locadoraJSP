@@ -105,9 +105,9 @@ public class ServletCadastrarCliente extends HttpServlet {
                         if(id == varIdSocio)
                             socio = so;
                     }    
-                   int r = AplCadastrarDependente.inserirDependente(varNome, varDtNasc, varSexo, varAtivo, socio);
+                   int r = AplCadastrarCliente.inserirDependente(varNome, varDtNasc, varSexo, varAtivo, socio);
 			
-                    if(r == AplCadastrarDependente.SUCESSO) {
+                    if(r == AplCadastrarCliente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
                     }else{
                         response.sendRedirect("msgCadastroError.jsp");
@@ -122,9 +122,9 @@ public class ServletCadastrarCliente extends HttpServlet {
                     int varAtivo = Integer.parseInt(request.getParameter("ativo"));
                     String varSexo = request.getParameter("sexo");             
                     
-                    int r = AplCadastrarSocio.inserirSocio(varNome, varDtNasc, varSexo, varAtivo, varCPF, varEndereco, varTel);
+                    int r = AplCadastrarCliente.inserirSocio(varNome, varDtNasc, varSexo, varAtivo, varCPF, varEndereco, varTel);
 			
-                    if(r == AplCadastrarSocio.SUCESSO) {
+                    if(r == AplCadastrarCliente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
                     }else{
                         response.sendRedirect("msgCadastroError.jsp");

@@ -16,7 +16,7 @@ import model.application.acervo.AplCadastrarDiretor;
 
 import model.application.acervo.AplCadastrarItem;
 import model.application.acervo.AplCadastrarTitulo;
-import model.application.cliente.AplCadastrarDependente;
+import model.application.cliente.AplCadastrarCliente;
 import model.domain.acervo.Ator;
 import model.domain.acervo.Classe;
 import model.domain.acervo.Diretor;
