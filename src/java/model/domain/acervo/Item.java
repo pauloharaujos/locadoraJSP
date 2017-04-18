@@ -35,7 +35,7 @@ public class Item {
 	private Titulo titulo;
 	
 	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(value = FetchMode.SUBSELECT)
+	//@Fetch(value = FetchMode.SUBSELECT)
 	private List<Locacao> locacoes;
 	
 	public Item(int numSerie, String dtAquisicao, String tipoItem, Titulo titulo) {

@@ -27,7 +27,7 @@
         <div class="col-md-12 jumbotron">
         
 			<h2 align="center"> CADASTRO DE DEPENDENTE</h2>
-            <form class="form-horizontal" method="POST" action="ServletCadastrarDependente">            
+            <form class="form-horizontal" method="POST" action="ServletCadastrarCliente">            
             	
               <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
