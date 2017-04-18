@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -34,6 +35,7 @@ public class Item {
         @JoinColumn(name = "idTitulo", nullable = false, updatable = true)
 	private Titulo titulo;
 	
+        @Transient
 	@OneToMany(fetch = FetchType.EAGER)
 	//@Fetch(value = FetchMode.SUBSELECT)
 	private List<Locacao> locacoes;

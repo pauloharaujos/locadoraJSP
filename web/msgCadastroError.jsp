@@ -22,13 +22,13 @@
     <div class="container">
 
         <div class="col-md-12 jumbotron">
-			<h2 align="center"> BEM VINDO !!!</h2>		
-            
-    	</div>
+			<h2 align="center"> ERRO AO CADASTRAR !</h2>		
+           
+    		</div>
 
-    	<div id="footer" class="col-md-12">
-    	    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
-    	</div>
+    		<div id="footer" class="col-md-12">
+    		    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
+    		</div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
