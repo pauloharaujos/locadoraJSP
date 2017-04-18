@@ -27,7 +27,7 @@ public class Titulo {
 	private String sinopse;
 	private String categoria;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<Ator> atores = new ArrayList();	
 	
 	@ManyToOne 

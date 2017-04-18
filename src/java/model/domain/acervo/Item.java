@@ -50,6 +50,10 @@ public class Item {
 	public Item(){
 		
 	}
+        
+        public int getId(){
+            return this.idItem;
+        }
 
 	public int getNumSerie() {
 		return numSerie;
@@ -91,5 +95,8 @@ public class Item {
 		this.locacoes = locacoes;
 	}
 	
+        public String toString(){
+            return Integer.toString(this.numSerie);
+        }
 	
 }

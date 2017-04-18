@@ -13,7 +13,9 @@ import model.application.acervo.AplCadastrarAtor;
 
 import model.application.acervo.AplCadastrarItem;
 import model.application.cliente.AplCadastrarCliente;
+import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
+import model.domain.cliente.Cliente;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,12 +48,13 @@ public class ServletCadastrarItem extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String valor = request.getParameter("operacao");
-                int varNumSerie = Integer.parseInt(request.getParameter("numSerie"));
-		int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
-		String varDtAq = request.getParameter("dtAq");
-		String varTipo= request.getParameter("tipo");
+
                 
                 if(valor.equals("incluirItem")){
+                    int varNumSerie = Integer.parseInt(request.getParameter("numSerie"));
+                    int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
+                    String varDtAq = request.getParameter("dtAq");
+                    String varTipo= request.getParameter("tipo");
 		    
                     Titulo titulo = null;
                     SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
@@ -75,12 +78,31 @@ public class ServletCadastrarItem extends HttpServlet {
                     }else{
                         response.sendRedirect("msgCadastroError.jsp");
                     }
-		}else if (valor.equals("alterarItem")){
+		}else if (valor.equals("excluirItem")){
+                    int varIdItem = Integer.parseInt(request.getParameter("item"));
+                    
+                    Item item = null;
+                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                    Session s = sf.openSession();
+                    Criteria c  = s.createCriteria(Item.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Item i1 = (Item) i.next();
+                        int id = i1.getId();
+
+                        if((id == varIdItem))
+                            item = i1;                   
+                    }                      
+                    int r = AplCadastrarItem.excluirItem(item);
 			
-		}
-                
-                
-                
+                    if(r == AplCadastrarItem.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
+                }
 	}
 
 }
