@@ -53,6 +53,7 @@
                                   out.println("<option value='"+ id +"' >" +a+"</option>");
                               }                          
                           %>
+                          s.close();
                       </select> 
                 </div>
               </div>
@@ -72,7 +73,8 @@
                                   Diretor d = (Diretor) i.next();
                                   int id = d.getId();
                                   out.println("<option value='"+ id +"' >" +d+"</option>");
-                              }                          
+                              }   
+                              s.close();
                           %>
                       </select> 
                 </div>
@@ -104,7 +106,8 @@
                                   Classe c1 = (Classe) i.next();
                                   int id = c1.getId();
                                   out.println("<option value='"+ id +"' >" +c1+"</option>");
-                              }                          
+                              }    
+                              s.close();
                           %>
                       </select> 
                 </div>

@@ -1,3 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="model.domain.cliente.Locacao"%>
+<%@page import="Hibernate.ConexaoSessionFactory"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="org.hibernate.SessionFactory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,21 +24,35 @@
 	<div class="container">
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CANCELAR LOCACAO</h2>
+			<h2 align="center"> CANCELAR LOCAÇÂO</h2>
             <form class="form-horizontal" method="POST" action="#">            
             	
-              <div class="form-group">
+          <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Locacao</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="E3FR">                    
+                      <select name="locacao" class="form-control">
+                          <%
+                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+                              Session s = sf.openSession();
+                              Criteria c  = s.createCriteria(Locacao.class);
+                              c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                              List l = c.list();
+                              Iterator i = l.iterator();
+                              
+                              while(i.hasNext()){
+                                  Locacao i1 = (Locacao) i.next();
+                                  int id = i1.getId();
+                                  out.println("<option value='"+ id +"' >" +i1+"</option>");
+                              }                          
+                          %>
+                      </select>                
                 </div>
-              </div>
+              </div> 
                                     
 
               <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-default"> <span class="glyphicon glyphicon-search"></span> Pesquisar</button>
-                  <button type="submit" class="btn btn-default">Cancelar</button>
+                <div class="col-sm-offset-2 col-sm-10">     
+                  <button type="submit" name="operacao" value="cancelarLocacao" class="btn btn-default">Cancelar</button>
                 </div>
               </div>
               </form>

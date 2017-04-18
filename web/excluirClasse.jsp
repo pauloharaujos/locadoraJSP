@@ -43,7 +43,8 @@
                                   Classe c1 = (Classe) i.next();
                                   int id = c1.getId();
                                   out.println("<option value='"+ id +"' >" +c1+"</option>");
-                              }                          
+                              } 
+                              s.close();
                           %>
                       </select>                
                 </div>

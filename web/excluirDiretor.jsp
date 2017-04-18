@@ -45,6 +45,7 @@
                                   out.println("<option value='"+ id +"' >" +d1+"</option>");
                               }                          
                           %>
+                          s.close();
                       </select>                
                 </div>
               </div>                                    

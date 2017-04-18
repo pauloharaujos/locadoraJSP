@@ -28,11 +28,11 @@ public class Locacao {
 	private int multaCobrada;
         
         @ManyToOne
-	@JoinColumn(name="idCliente")
+	//@JoinColumn(name="idCliente")
         private Cliente cliente;
 	
 	@ManyToOne
-	@JoinColumn(name="idItem")
+	//@JoinColumn(name="idItem")
 	private Item item;
 	
 	public Locacao(String dtLocacao, String dtDevolucaoPrevista, String dtDevolucaoEfetiva,
@@ -50,6 +50,10 @@ public class Locacao {
 	public Locacao(){
 		
 	}
+        
+        public int getId(){
+            return this.idLocacao;
+        }
 
 	public String getDtLocacao() {
 		return dtLocacao;

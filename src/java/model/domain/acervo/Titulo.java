@@ -31,11 +31,11 @@ public class Titulo {
 	private List<Ator> atores = new ArrayList();	
 	
 	@ManyToOne 
-        @JoinColumn(name = "idDiretor", nullable = false, updatable = true)
+        //@JoinColumn(name = "idDiretor", nullable = false, updatable = true)
 	private Diretor diretor;
 	
 	@ManyToOne 
-        @JoinColumn(name = "idClasse", nullable = false, updatable = true)
+        //@JoinColumn(name = "idClasse", nullable = false, updatable = true)
 	private Classe classe;
 	
 	public Titulo(String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores) {

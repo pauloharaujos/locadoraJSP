@@ -32,7 +32,7 @@ public class Item {
 	private String tipoItem;
 	
 	@ManyToOne 
-        @JoinColumn(name = "idTitulo", nullable = false, updatable = true)
+        //@JoinColumn(name = "idTitulo", nullable = false, updatable = true)
 	private Titulo titulo;
 	
         @Transient

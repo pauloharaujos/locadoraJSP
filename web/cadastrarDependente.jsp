@@ -79,7 +79,8 @@
                                   Socio so = (Socio) i.next();
                                   int id = so.getNumIncricao();
                                   out.println("<option value='"+ id +"' >" +so+"</option>");
-                              }                          
+                              }      
+                              s.close();
                           %>
                       </select> 
                 </div>

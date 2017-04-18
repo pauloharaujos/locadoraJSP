@@ -43,7 +43,8 @@
                                   Titulo t1 = (Titulo) i.next();
                                   int id = t1.getId();
                                   out.println("<option value='"+ id +"' >" +t1+"</option>");
-                              }                          
+                              }     
+                              s.close();
                           %>
                       </select>                
                 </div>
