@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/domain/acervo/Titulo.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/domain/acervo/Item.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/acervo/AplCadastrarTitulo.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarTitulo.java</file>
-            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/excluirTitulo.jsp</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/web/cadastrarAtor.jsp</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/model/application/acervo/AplCadastrarAtor.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/filter/FltTransacao.java</file>
+            <file>file:/home/paulo/NetBeansProjects/DW_LocadoraPaulo/src/java/controller/ServletCadastrarAtor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -46,12 +46,13 @@ public class ServletCadastrarAtor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String valor = request.getParameter("operacao");		
+		String valor = request.getParameter("operacao");	
+                Session s = (Session) request.getAttribute("sessaoBD");
 				
 		if(valor.equals("incluirAtor")){
                     String varNome = request.getParameter("nome");
                     
-                    int r = AplCadastrarAtor.inserirAtor(varNome);
+                    int r = AplCadastrarAtor.inserirAtor(s, varNome);
 			
                     if(r == AplCadastrarAtor.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -61,30 +62,30 @@ public class ServletCadastrarAtor extends HttpServlet {
 		}else if (valor.equals("alterarAtor")){
 			
 		}else if (valor.equals("excluirAtor")){
-                    int varIdAtor = Integer.parseInt(request.getParameter("ator"));
-                    
-                    Ator ator = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
-                    Criteria c  = s.createCriteria(Ator.class);
-                    List l = c.list();
-                    Iterator i = l.iterator();
-
-                    while(i.hasNext()){
-                        Ator a = (Ator) i.next();
-                        int id = a.getId();
-
-                        if((id == varIdAtor))
-                            ator = a;                   
-                    }           
-                    s.close();
-                    int r = AplCadastrarAtor.excluirAtor(ator);
-			
-                    if(r == AplCadastrarAtor.SUCESSO) {
-                        response.sendRedirect("msgCadastroSucesso.jsp");
-                    }else{
-                        response.sendRedirect("msgCadastroError.jsp");
-                    }
+//                    int varIdAtor = Integer.parseInt(request.getParameter("ator"));
+//                    
+//                    Ator ator = null;
+//                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
+//                    Session s = sf.openSession();
+//                    Criteria c  = s.createCriteria(Ator.class);
+//                    List l = c.list();
+//                    Iterator i = l.iterator();
+//
+//                    while(i.hasNext()){
+//                        Ator a = (Ator) i.next();
+//                        int id = a.getId();
+//
+//                        if((id == varIdAtor))
+//                            ator = a;                   
+//                    }           
+//                    s.close();
+//                    int r = AplCadastrarAtor.excluirAtor(ator);
+//			
+//                    if(r == AplCadastrarAtor.SUCESSO) {
+//                        response.sendRedirect("msgCadastroSucesso.jsp");
+//                    }else{
+//                        response.sendRedirect("msgCadastroError.jsp");
+//                    }
                 }
 		
 	}
