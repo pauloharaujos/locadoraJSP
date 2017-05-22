@@ -51,9 +51,10 @@
                                   Ator a = (Ator) i.next();
                                   int id = a.getId();
                                   out.println("<option value='"+ id +"' >" +a+"</option>");
-                              }                          
+                              }    
+                              s.close();
                           %>
-                          s.close();
+                          
                       </select> 
                 </div>
               </div>

@@ -62,30 +62,28 @@ public class ServletCadastrarAtor extends HttpServlet {
 		}else if (valor.equals("alterarAtor")){
 			
 		}else if (valor.equals("excluirAtor")){
-//                    int varIdAtor = Integer.parseInt(request.getParameter("ator"));
-//                    
-//                    Ator ator = null;
-//                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-//                    Session s = sf.openSession();
-//                    Criteria c  = s.createCriteria(Ator.class);
-//                    List l = c.list();
-//                    Iterator i = l.iterator();
-//
-//                    while(i.hasNext()){
-//                        Ator a = (Ator) i.next();
-//                        int id = a.getId();
-//
-//                        if((id == varIdAtor))
-//                            ator = a;                   
-//                    }           
-//                    s.close();
-//                    int r = AplCadastrarAtor.excluirAtor(ator);
-//			
-//                    if(r == AplCadastrarAtor.SUCESSO) {
-//                        response.sendRedirect("msgCadastroSucesso.jsp");
-//                    }else{
-//                        response.sendRedirect("msgCadastroError.jsp");
-//                    }
+                    int varIdAtor = Integer.parseInt(request.getParameter("ator"));
+                    
+                    Ator ator = null;                  
+                    Criteria c  = s.createCriteria(Ator.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+
+                    while(i.hasNext()){
+                        Ator a = (Ator) i.next();
+                        int id = a.getId();
+
+                        if((id == varIdAtor))
+                            ator = a;                   
+                    }           
+                
+                    int r = AplCadastrarAtor.excluirAtor(s, ator);
+			
+                    if(r == AplCadastrarAtor.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
                 }
 		
 	}

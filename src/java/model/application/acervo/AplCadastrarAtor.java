@@ -27,40 +27,9 @@ public class AplCadastrarAtor {
             return SUCESSO;
 		         
         }
-        
-        
-        public static int excluirAtor(Ator ator){
-		                        
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-						
-		try{
-		 sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.delete(ator);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();                               
-			}
-		}
-            return -1;
+               
+        public static int excluirAtor(Session s, Ator ator){					
+            s.delete(ator);
+            return SUCESSO;				
 	}
 }
