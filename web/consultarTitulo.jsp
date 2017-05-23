@@ -24,39 +24,56 @@
         <div class="col-md-12 jumbotron">
         
 			<h2 align="center"> CONSULTAR TÍTULO</h2>
-            <form class="form-horizontal" method="POST" action="#"> 
-              <br><br>
-              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Digite um nome para Filtrar">
-              
+              <br><br>             
+                                                 
+                              
+             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Digite um nome para Filtrar">          
+                
               <table id="myTable" class="table table-striped table-bordered table-hover">
                  <thead>
-                    <tr><th>Nome</th><th>Sinopse</th></tr>
+                    <tr><th>Titulo</th><th>Sinopse</th><th>Ano</th><th>Categoria</th><th>Classe</th><th>Diretor</th></tr>
                 </thead>
         
                 <tbody data-link='row' class='rowlink'>
                  <%
                       Session s = (Session) request.getAttribute("sessaoBD");
                       Criteria c = s.createCriteria(Titulo.class);
+                      c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                       List l = c.list();
                       Iterator i = l.iterator();
                       
                       while(i.hasNext()){
                         Titulo t1 = (Titulo) i.next();
-                        int id = t1.getId();                        
-                        out.println("<tr><td>"+ t1.getNome() +"</td><td>"+t1.getSinopse()+"</td><td class='rowlink-skip'><a href='#'> "
-                                + "Excluir</a></td><td class='rowlink-skip'><a href='#'> "
-                                + "Alterar</a></td></tr> ");                        
+                        int id = t1.getId(); 
+                        out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarTitulo'>");
+                        out.println("<tr>");
+                        out.println("<td>"+ t1.getNome() +"</td>"
+                                + "<td>"+t1.getSinopse()+"</td>"
+                                + "<td>"+t1.getAno()+"</td>"
+                                + "<td>"+t1.getCategoria()+"</td>"    
+                                + "<td>"+t1.getClasse()+"</td>"
+                                + "<td>"+t1.getDiretor()+"</td>"                                
+                                + " <td> <button type='submit' name='operacao' value='alterarTitulo' class='btn btn-default'  > Alterar  </button> "
+                                + "<button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default'> Excluir  </button> </td> </tr> ");   
+                        out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
+                        out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
+                        out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
+                        out.println("<input type='hidden' id='ano' name='ano' value ='"+ t1.getAno() +"'>");
+                        out.println("<input type='hidden' id='categoria' name='categoria' value ='"+ t1.getCategoria()+"'>");
+                        out.println("<input type='hidden' id='classe' name='classe' value ='"+ t1.getClasse()+"'>");
+                        out.println("<input type='hidden' id='diretor' name='diretor' value ='"+ t1.getDiretor()+"'>");                        
+                        out.println("</tr>");
+                        out.println("</form>");
                       } 
                   %> 
                   </tbody>
-              </table>              
-             
-            </form>
-    	</div>
+              </table>             
+            
+            </div>
 
-    		<div id="footer" class="col-md-12">
-    		    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
-    		</div>
+    	<div id="footer" class="col-md-12">
+    	    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
+    	</div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

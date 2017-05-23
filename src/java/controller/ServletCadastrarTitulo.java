@@ -118,6 +118,8 @@ public class ServletCadastrarTitulo extends HttpServlet {
 		}else if (valor.equals("alterarTitulo")){
 			
 		}else if (valor.equals("excluirTitulo")){
+                    System.out.println("ENTROU SERVLET ");
+                    
                     int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
                     
                     Titulo titulo = null;
@@ -125,7 +127,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                     Session s = sf.openSession();
                     Criteria c  = s.createCriteria(Titulo.class);
                     List l = c.list();
-                    Iterator i = l.iterator();
+                    Iterator i = l.iterator();  
 
                     while(i.hasNext()){
                         Titulo t1 = (Titulo) i.next();
