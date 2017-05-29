@@ -87,7 +87,7 @@
                   <select name="categoria" class="form-control">
                     <option>Categoria 1</option>
                     <option>Categoria 2</option>
-                    <option>Categoria 3</option>                    <
+                    <option>Categoria 3</option>                    
                   </select>
                 </div>
               </div>

@@ -41,29 +41,34 @@
                       c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                       List l = c.list();
                       Iterator i = l.iterator();
+                     // String op = request.getParameter("op");
                       
                       while(i.hasNext()){
                         Titulo t1 = (Titulo) i.next();
                         int id = t1.getId(); 
-                        out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarTitulo'>");
-                        out.println("<tr>");
-                        out.println("<td>"+ t1.getNome() +"</td>"
-                                + "<td>"+t1.getSinopse()+"</td>"
-                                + "<td>"+t1.getAno()+"</td>"
-                                + "<td>"+t1.getCategoria()+"</td>"    
-                                + "<td>"+t1.getClasse()+"</td>"
-                                + "<td>"+t1.getDiretor()+"</td>"                                
-                                + " <td> <button type='submit' name='operacao' value='alterarTitulo' class='btn btn-default'  > Alterar  </button> "
-                                + "<button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default'> Excluir  </button> </td> </tr> ");   
-                        out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
-                        out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
-                        out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
-                        out.println("<input type='hidden' id='ano' name='ano' value ='"+ t1.getAno() +"'>");
-                        out.println("<input type='hidden' id='categoria' name='categoria' value ='"+ t1.getCategoria()+"'>");
-                        out.println("<input type='hidden' id='classe' name='classe' value ='"+ t1.getClasse()+"'>");
-                        out.println("<input type='hidden' id='diretor' name='diretor' value ='"+ t1.getDiretor()+"'>");                        
-                        out.println("</tr>");
-                        out.println("</form>");
+                      //  if(op.equals("alterar")){
+                            out.println("<form class='form-horizontal' method='POST' action='alterarTitulo.jsp'>");
+                            out.println("<tr>");
+                            out.println("<td>"+ t1.getNome() +"</td>"
+                                    + "<td>"+t1.getSinopse()+"</td>"
+                                    + "<td>"+t1.getAno()+"</td>"
+                                    + "<td>"+t1.getCategoria()+"</td>"    
+                                    + "<td>"+t1.getClasse()+"</td>"
+                                    + "<td>"+t1.getDiretor()+"</td>"                                
+                                    + " <td> <button type='submit' name='operacao' value='alterarTitulo' class='btn btn-default'  > Alterar  </button> "
+                                   // + "<button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default' onclick='excluirTitulo(" + t1.getId() + ")'> Excluir  </button> </td> </tr> ");   
+                                    + " <a href='excluirTitulo.jsp'> <button type='button' name='operacao' value='excluirTitulo' class='btn btn-default'> Excluir  </button> </a> </td> </tr> ");
+                            out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
+                            out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
+                            out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
+                            out.println("<input type='hidden' id='ano' name='ano' value ='"+ t1.getAno() +"'>");
+                            out.println("<input type='hidden' id='categoria' name='categoria' value ='"+ t1.getCategoria()+"'>");
+                            out.println("<input type='hidden' id='classe' name='classe' value ='"+ t1.getClasse()+"'>");
+                            out.println("<input type='hidden' id='diretor' name='diretor' value ='"+ t1.getDiretor()+"'>");                        
+                            out.println("</tr>");
+                            out.println("</form>");                            
+                      //  }
+
                       } 
                   %> 
                   </tbody>
