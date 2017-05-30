@@ -23,8 +23,7 @@ public class AplCadastrarDiretor {
             return SUCESSO;
 	}     
         
-        public static int excluirDiretor(Session s, Diretor diretor){
-	                     
+        public static int excluirDiretor(Session s, Diretor diretor){	                     
              s.delete(diretor);		  
              return SUCESSO;
 	}

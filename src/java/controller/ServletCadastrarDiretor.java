@@ -81,7 +81,7 @@ public class ServletCadastrarDiretor extends HttpServlet {
                     }  
 			
 		}else if (valor.equals("excluirDiretor")){
-                    int varIdDiretor = Integer.parseInt(request.getParameter("diretor"));
+                    int varIdDiretor = Integer.parseInt(request.getParameter("id"));
                     
                     Diretor diretor = null;                 
                     Criteria c  = s.createCriteria(Diretor.class);
@@ -94,8 +94,8 @@ public class ServletCadastrarDiretor extends HttpServlet {
 
                         if((id == varIdDiretor))
                             diretor = d1;                   
-                    }       
-                    s.close();
+                    }     
+                 
                     int r = AplCadastrarDiretor.excluirDiretor(s, diretor);
 			
                     if(r == AplCadastrarDiretor.SUCESSO) {

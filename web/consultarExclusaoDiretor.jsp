@@ -1,3 +1,4 @@
+<%@page import="model.domain.acervo.Diretor"%>
 <%@page import="model.domain.acervo.Ator"%>
 <%@page import="model.domain.acervo.Titulo"%>
 <%@page import="java.util.Iterator"%>
@@ -11,7 +12,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Consultar Exclusao Ator</title>
+	<title>Consultar Exclusao Diretor</title>
 	<!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
@@ -24,7 +25,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR ATOR PARA EXCLUSAO</h2>
+			<h2 align="center"> CONSULTAR DIRETOR PARA EXCLUSAO</h2>
               <br><br>             
                                                  
                               
@@ -38,26 +39,25 @@
                 <tbody data-link='row' class='rowlink'>
                  <%
                       Session s = (Session) request.getAttribute("sessaoBD");
-                      Criteria c = s.createCriteria(Ator.class);
+                      Criteria c = s.createCriteria(Diretor.class);
                       c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                       List l = c.list();
                       Iterator i = l.iterator();                     
                       
                       while(i.hasNext()){
-                        Ator t1 = (Ator) i.next();
+                        Diretor t1 = (Diretor) i.next();
                         int id = t1.getId(); 
 //                       
-                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarAtor'>");
+                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarDiretor'>");
                             out.println("<tr>");
                             out.println("<td>"+ t1.getNome() +"</td>"                                                          
-                                    + " <td> <button type='submit' name='operacao' value='excluirAtor' class='btn btn-default'  > Excluir  </button> ");
+                                    + " <td> <button type='submit' name='operacao' value='excluirDiretor' class='btn btn-default'  > Excluir  </button> ");
                             out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
                             out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");                      
                             out.println("</tr>");
                             out.println("</form>");                            
                         }
 
-//                      } 
                   %> 
                   </tbody>
               </table>             
