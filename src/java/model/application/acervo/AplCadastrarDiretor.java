@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import Hibernate.ConexaoSessionFactory;
+import static model.application.acervo.AplCadastrarAtor.SUCESSO;
+import model.domain.acervo.Ator;
 import model.domain.acervo.Diretor;
 
 public class AplCadastrarDiretor {
@@ -13,82 +15,22 @@ public class AplCadastrarDiretor {
     public static int SUCESSO = 1;
     public static int ERRO_VALIDACAO_DADOS = 0;
 	
-	public static int inserirDiretor(String nome){
+	public static int inserirDiretor(Session s, String nome){
 		
-		Diretor d = null;
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-		
-		
-		if ("".equals(nome)) {
-                    return ERRO_VALIDACAO_DADOS;			
-		}
-		
-		d = new Diretor(nome);
-		d.setNome(nome);
-		
-		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.save(d);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();
-			}
-		}
-        return -1;
+            Diretor d = null;
+            d = new Diretor(nome);
+            s.save(d);
+            return SUCESSO;
 	}     
         
-        public static int excluirDiretor(Diretor diretor){
-		                        
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-						
-		try{
-		 sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.delete(diretor);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();                               
-			}
-		}
-            return -1;
+        public static int excluirDiretor(Session s, Diretor diretor){
+	                     
+             s.delete(diretor);		  
+             return SUCESSO;
+	}
+        
+        public static int alterarDiretor(Session s, Diretor diretor){
+            s.update(diretor);	
+            return SUCESSO;		
 	}
 }

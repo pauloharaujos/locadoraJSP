@@ -58,8 +58,8 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarDiretor.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Diretor</a> </li>
-				     <li> <a href="alterarDiretor.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Diretor</a> </li>
-				     <li> <a href="excluirDiretor.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Diretor</a> </li>
+				     <li> <a href="consultarAlteracaoDiretor.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Diretor</a> </li>
+				     <li> <a href="consultarExclusaoDiretor.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Diretor</a> </li>
 				    </ul>
 				    </li>
 				    

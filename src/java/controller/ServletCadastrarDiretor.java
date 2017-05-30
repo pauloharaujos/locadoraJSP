@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.application.acervo.AplCadastrarAtor;
 
 import model.application.acervo.AplCadastrarDiretor;
+import model.domain.acervo.Ator;
 import model.domain.acervo.Diretor;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -44,11 +46,11 @@ public class ServletCadastrarDiretor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String valor = request.getParameter("operacao");
-		
+		Session s = (Session) request.getAttribute("sessaoBD");
 				
 		if(valor.equals("incluirDiretor")){
                     String varNome = request.getParameter("nome");
-			int r = AplCadastrarDiretor.inserirDiretor(varNome);
+			int r = AplCadastrarDiretor.inserirDiretor(s, varNome);
 			
 			if(r == AplCadastrarDiretor.SUCESSO) {
                             response.sendRedirect("msgCadastroSucesso.jsp");
@@ -56,13 +58,32 @@ public class ServletCadastrarDiretor extends HttpServlet {
                             response.sendRedirect("msgCadastroError.jsp");
                         }
 		}else if (valor.equals("alterarDiretor")){
+                    int varId = Integer.parseInt(request.getParameter("id"));
+                    String varNome = request.getParameter("nome");
+                                
+                    Criteria c  = s.createCriteria(Diretor.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Diretor d1 = null;
+                    while(i.hasNext()){
+                        d1 = (Diretor) i.next();
+                        int id = d1.getId();
+
+                        if(id  ==  varId)
+                            d1.setNome(varNome);                             
+                    }               
+                    int r = AplCadastrarDiretor.alterarDiretor(s, d1);
+			
+                    if(r == AplCadastrarDiretor.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }  
 			
 		}else if (valor.equals("excluirDiretor")){
                     int varIdDiretor = Integer.parseInt(request.getParameter("diretor"));
                     
-                    Diretor diretor = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Diretor diretor = null;                 
                     Criteria c  = s.createCriteria(Diretor.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -75,7 +96,7 @@ public class ServletCadastrarDiretor extends HttpServlet {
                             diretor = d1;                   
                     }       
                     s.close();
-                    int r = AplCadastrarDiretor.excluirDiretor(diretor);
+                    int r = AplCadastrarDiretor.excluirDiretor(s, diretor);
 			
                     if(r == AplCadastrarDiretor.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
