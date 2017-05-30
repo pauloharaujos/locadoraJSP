@@ -1,11 +1,6 @@
 package model.application.acervo;
 
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.Session;
-
-import Hibernate.ConexaoSessionFactory;
 import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
 
@@ -14,81 +9,25 @@ public class AplCadastrarItem {
     public static int SUCESSO = 1;
     public static int ERRO_VALIDACAO_DADOS = 0;
 
-	public static int inserirItem(int numSerie, String dtAquisicao, String tipoItem, Titulo titulo){
+    public static int inserirItem(Session s, int numSerie, String dtAquisicao, String tipoItem, Titulo titulo){
 		
-		Item i = null;
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-		
-		
-		if (numSerie == 0) {
-                    return ERRO_VALIDACAO_DADOS;			
-		}
-		
-		i = new Item(numSerie, dtAquisicao, tipoItem, titulo);
+       Item i = null;
 				
-		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.save(i);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-			    t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();
-			}
-		}
-        return -1;
-	}
+       if (numSerie == 0) {
+            return ERRO_VALIDACAO_DADOS;			
+       }		
+       i = new Item(numSerie, dtAquisicao, tipoItem, titulo);
+       s.save(i);
+       return SUCESSO;		
+    }
         
-        public static int excluirItem(Item item){
-		                        
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-						
-		try{
-		 sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.delete(item);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();                               
-			}
-		}
-            return -1;
-	}
+    public static int excluirItem(Session s, Item item){		
+	s.delete(item);
+	return SUCESSO;		
+    }
+    
+    public static int alterarItem(Session s, Item item){		
+	s.update(item);
+	return SUCESSO;		
+    }
 }

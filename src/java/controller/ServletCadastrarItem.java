@@ -48,7 +48,7 @@ public class ServletCadastrarItem extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String valor = request.getParameter("operacao");
-
+                Session s = (Session) request.getAttribute("sessaoBD");
                 
                 if(valor.equals("incluirItem")){
                     int varNumSerie = Integer.parseInt(request.getParameter("numSerie"));
@@ -56,9 +56,7 @@ public class ServletCadastrarItem extends HttpServlet {
                     String varDtAq = request.getParameter("dtAq");
                     String varTipo= request.getParameter("tipo");
 		    
-                    Titulo titulo = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Titulo titulo = null;                    
                     Criteria c  = s.createCriteria(Titulo.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -69,10 +67,9 @@ public class ServletCadastrarItem extends HttpServlet {
 
                         if((id == varIdTitulo))
                             titulo = t;                   
-                    }       
-                    s.close();
+                    }  
 
-                   int r = AplCadastrarItem.inserirItem(varNumSerie, varDtAq, varTipo, titulo);
+                   int r = AplCadastrarItem.inserirItem(s, varNumSerie, varDtAq, varTipo, titulo);
 			
                     if(r == AplCadastrarAtor.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -80,11 +77,9 @@ public class ServletCadastrarItem extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
 		}else if (valor.equals("excluirItem")){
-                    int varIdItem = Integer.parseInt(request.getParameter("item"));
+                    int varIdItem = Integer.parseInt(request.getParameter("id"));
                     
-                    Item item = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Item item = null;                  
                     Criteria c  = s.createCriteria(Item.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -95,15 +90,17 @@ public class ServletCadastrarItem extends HttpServlet {
 
                         if((id == varIdItem))
                             item = i1;                   
-                    }     
-                    s.close();
-                    int r = AplCadastrarItem.excluirItem(item);
+                    }    
+                  
+                    int r = AplCadastrarItem.excluirItem(s, item);
 			
                     if(r == AplCadastrarItem.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
                     }else{
                         response.sendRedirect("msgCadastroError.jsp");
                     }
+                } else if(valor.equals("alterarItem")){
+                    
                 }
 	}
 

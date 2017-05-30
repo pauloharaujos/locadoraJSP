@@ -80,9 +80,9 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarItem.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Item</a> </li>
-				     <li> <a href="alterarItem.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Item</a> </li>
+				     <li> <a href="consultarAlteracaoItem.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Item</a> </li>
 				     <li> <a href="consultarItem.jsp"> <span class="glyphicon glyphicon-search"></span> Consultar Item</a> </li>
-				     <li> <a href="excluirItem.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Item</a> </li>
+				     <li> <a href="consultarExclusaoItem.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Item</a> </li>
 				    </ul>
 				    </li>
 				    

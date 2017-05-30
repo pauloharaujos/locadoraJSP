@@ -85,7 +85,8 @@ public class ServletCadastrarCliente extends HttpServlet {
             throws ServletException, IOException {
         
                 String valor = request.getParameter("operacao");	
-				
+		Session s = (Session) request.getAttribute("sessaoBD");
+                
                  if(valor.equals("incluirDependente")){
                      
                     String varNome = request.getParameter("nome");		
@@ -94,9 +95,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                     String varSexo = request.getParameter("sexo");
                     int varIdSocio = Integer.parseInt(request.getParameter("socio"));
 		                        
-                    Socio socio = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Socio socio = null;                   
                     
                     Criteria c  = s.createCriteria(Socio.class);
                     List l = c.list();
@@ -110,7 +109,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                             socio = so;
                     }    
                     s.close();
-                   int r = AplCadastrarCliente.inserirDependente(varNome, varDtNasc, varSexo, varAtivo, socio);
+                   int r = AplCadastrarCliente.inserirDependente(s, varNome, varDtNasc, varSexo, varAtivo, socio);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -127,7 +126,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                     int varAtivo = Integer.parseInt(request.getParameter("ativo"));
                     String varSexo = request.getParameter("sexo");             
                     
-                    int r = AplCadastrarCliente.inserirSocio(varNome, varDtNasc, varSexo, varAtivo, varCPF, varEndereco, varTel);
+                    int r = AplCadastrarCliente.inserirSocio(s, varNome, varDtNasc, varSexo, varAtivo, varCPF, varEndereco, varTel);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -138,9 +137,7 @@ public class ServletCadastrarCliente extends HttpServlet {
 		}else if (valor.equals("excluirCliente")){
 		    int varIdCliente = Integer.parseInt(request.getParameter("cliente"));
                     
-                    Cliente cliente = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Cliente cliente = null;                  
                     Criteria c  = s.createCriteria(Cliente.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -153,7 +150,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                             cliente = c1;                   
                     }       
                     s.close();
-                    int r = AplCadastrarCliente.excluirCliente(cliente);
+                    int r = AplCadastrarCliente.excluirCliente(s, cliente);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
