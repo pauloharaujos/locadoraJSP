@@ -10,7 +10,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Consultar Titulo</title>
+	<title>Consultar Titulo Para Exclusão</title>
 	<!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR TÍTULO</h2>
+			<h2 align="center"> CONSULTAR TÍTULO PARA EXCLUSÃO</h2>
               <br><br>             
                                                  
                               
@@ -47,14 +47,15 @@
                         Titulo t1 = (Titulo) i.next();
                         int id = t1.getId(); 
 //                        if(op.equals("alterar")){
-                            out.println("<form class='form-horizontal' method='POST' action='alterarTitulo.jsp'>");
+                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarTitulo'>");
                             out.println("<tr>");
                             out.println("<td>"+ t1.getNome() +"</td>"
                                     + "<td>"+t1.getSinopse()+"</td>"
                                     + "<td>"+t1.getAno()+"</td>"
                                     + "<td>"+t1.getCategoria()+"</td>"    
                                     + "<td>"+t1.getClasse()+"</td>"
-                                    + "<td>"+t1.getDiretor()+"</td>");
+                                    + "<td>"+t1.getDiretor()+"</td>"                                
+                                    + " <td> <button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default'  > Excluir  </button> ");
                             out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
                             out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
                             out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");

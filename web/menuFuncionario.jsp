@@ -92,9 +92,10 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarTitulo.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Titulo</a> </li>
-				     <li> <a href="alterarTitulo.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Titulo</a> </li>
-				      <li> <a href="consultarTitulo.jsp"> <span class="glyphicon glyphicon-search"></span> Consultar Titulo</a> </li>
-				     <li> <a href="excluirTitulo.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Titulo</a> </li>
+				     <li> <a href="consultarAlteracao.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Titulo</a> </li>            
+                                      
+				      <li> <a href="consultarTitulo.jsp"> <span class="glyphicon glyphicon-search"></span> Consultar Titulo</a> </li>                                                                
+				     <li> <a href="consultarExclusao.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Titulo</a> </li>
 				    </ul>
 				    </li>
 				   

@@ -185,7 +185,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                     
 		}else if (valor.equals("excluirTitulo")){                  
                     
-                    int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
+                    int varIdTitulo = Integer.parseInt(request.getParameter("id"));
                     
                     Titulo titulo = null;
                     SessionFactory sf = ConexaoSessionFactory.getSessionFactory();

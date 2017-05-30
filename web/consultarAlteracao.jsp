@@ -23,7 +23,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR TÍTULO</h2>
+			<h2 align="center"> CONSULTAR TÍTULO PARA ALTERAÇÃO</h2>
               <br><br>             
                                                  
                               
@@ -54,7 +54,8 @@
                                     + "<td>"+t1.getAno()+"</td>"
                                     + "<td>"+t1.getCategoria()+"</td>"    
                                     + "<td>"+t1.getClasse()+"</td>"
-                                    + "<td>"+t1.getDiretor()+"</td>");
+                                    + "<td>"+t1.getDiretor()+"</td>"                                
+                                    + " <td> <button type='submit' name='operacao' value='alterarTitulo' class='btn btn-default'  > Alterar  </button> ");
                             out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
                             out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
                             out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
