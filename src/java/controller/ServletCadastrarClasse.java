@@ -100,8 +100,8 @@ public class ServletCadastrarClasse extends HttpServlet {
 
                         if((id == varIdClasse))
                             classe = c1;                   
-                    }        
-                    s.close();
+                    }       
+                   
                     int r = AplCadastrarClasse.excluirClasse(s, classe);
 			
                     if(r == AplCadastrarClasse.SUCESSO) {
