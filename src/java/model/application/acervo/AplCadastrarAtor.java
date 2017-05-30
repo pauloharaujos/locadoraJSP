@@ -32,4 +32,9 @@ public class AplCadastrarAtor {
             s.delete(ator);
             return SUCESSO;				
 	}
+        
+        public static int alterarAtor(Session s, Ator ator){
+            s.update(ator);	
+            return SUCESSO;		
+	}
 }

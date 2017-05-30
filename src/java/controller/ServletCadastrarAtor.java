@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.application.acervo.AplCadastrarAtor;
+import model.application.acervo.AplCadastrarTitulo;
 import model.domain.acervo.Ator;
+import model.domain.acervo.Classe;
+import model.domain.acervo.Diretor;
 import model.domain.acervo.Titulo;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -60,9 +63,30 @@ public class ServletCadastrarAtor extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
 		}else if (valor.equals("alterarAtor")){
+                    int varId = Integer.parseInt(request.getParameter("id"));
+                    String varNome = request.getParameter("nome");
+                                
+                    Criteria c  = s.createCriteria(Ator.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Ator a1 = null;
+                    while(i.hasNext()){
+                        a1 = (Ator) i.next();
+                        int id = a1.getId();
+
+                        if(id  ==  varId)
+                            a1.setNome(varNome);                             
+                    }               
+                    int r = AplCadastrarAtor.alterarAtor(s, a1);
+			
+                    if(r == AplCadastrarAtor.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
 			
 		}else if (valor.equals("excluirAtor")){
-                    int varIdAtor = Integer.parseInt(request.getParameter("ator"));
+                    int varIdAtor = Integer.parseInt(request.getParameter("id"));
                     
                     Ator ator = null;                  
                     Criteria c  = s.createCriteria(Ator.class);

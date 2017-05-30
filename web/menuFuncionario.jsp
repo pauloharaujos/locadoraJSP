@@ -47,8 +47,8 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarAtor.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Ator</a> </li>
-				     <li> <a href="alterarAtor.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Ator</a> </li>
-				     <li> <a href="excluirAtor.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Ator</a> </li>
+				     <li> <a href="consultarAlteracaoAtor.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Ator</a> </li>
+				     <li> <a href="consultarExclusaoAtor.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Ator</a> </li>
 				    </ul>
 				    </li>
 				    
@@ -92,10 +92,10 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarTitulo.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Titulo</a> </li>
-				     <li> <a href="consultarAlteracao.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Titulo</a> </li>            
+				     <li> <a href="consultarAlteracaoTitulo.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Titulo</a> </li>            
                                       
 				      <li> <a href="consultarTitulo.jsp"> <span class="glyphicon glyphicon-search"></span> Consultar Titulo</a> </li>                                                                
-				     <li> <a href="consultarExclusao.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Titulo</a> </li>
+				     <li> <a href="consultarExclusaoTitulo.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Titulo</a> </li>
 				    </ul>
 				    </li>
 				   
