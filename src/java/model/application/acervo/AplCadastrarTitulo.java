@@ -17,116 +17,21 @@ public class AplCadastrarTitulo {
     public static int SUCESSO = 1;
     public static int ERRO_VALIDACAO_DADOS = 0;
 
-	public static int inserirTitulo(String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores){
+	public static int inserirTitulo(Session s, String nome, int ano, String sinopse, String categoria, Diretor diretor, Classe classe, List atores){
 		
-		Titulo t1 = null;
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-		
-		
-		if ("".equals(nome)) {
-                    return ERRO_VALIDACAO_DADOS;			
-		}
-		
-		t1 = new Titulo(nome, ano, sinopse, categoria, diretor, classe, atores); 
-				
-		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();
-		  s = sf.openSession();	
-		  t = s.getTransaction();
-		  t.begin();
-		  s.save(t1);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();
-			}
-		}
-        return -1;
+            Titulo t1;		
+            t1 = new Titulo(nome, ano, sinopse, categoria, diretor, classe, atores); 
+            s.save(t1);
+            return SUCESSO;
 	}
         
-        public static int excluirTitulo(Titulo titulo){
-		                        
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-						
-		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();                  
-		  t = s.getTransaction();
-		  t.begin();
-		  s.delete(titulo);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();                               
-			}
-		}
-            return -1;
+        public static int excluirTitulo(Session s, Titulo titulo){		                        
+	    s.delete(titulo);
+	    return SUCESSO;		
 	}
         
-        public static int alterarTitulo(Titulo titulo){
-		                        
-		SessionFactory sf = null;
-		Session s = null;
-		Transaction t = null;
-						
-		try{
-		  sf = ConexaoSessionFactory.getSessionFactory();                 
-		  s = sf.openSession();                  
-		  t = s.getTransaction();
-		  t.begin();
-		  s.update(titulo);
-		  t.commit(); 
-		  return SUCESSO;
-		}catch(HibernateException e){
-			System.err.println("/*----------------------ERRO------------------*");
-			System.err.println(e.getMessage());
-			System.err.println(e.getMessage());
-			System.err.println("*-----------------------*");
-			System.err.println(e.toString());
-			System.err.println("/*----------------------ERRO------------------*");
-			
-			if(t != null) {
-				t.rollback();
-			}
-			
-			//return EXCEPTION_BANCO_DADOS;
-		}finally{
-			if(s != null) {
-				s.close();                               
-			}
-		}
-            return -1;
+        public static int alterarTitulo(Session s, Titulo titulo){
+            s.update(titulo);
+	    return SUCESSO;
 	}
 }

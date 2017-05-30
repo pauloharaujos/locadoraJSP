@@ -53,7 +53,8 @@ public class ServletCadastrarTitulo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String valor = request.getParameter("operacao");	
-                				
+            Session s = (Session) request.getAttribute("sessaoBD");
+            
 	    if(valor.equals("incluirTitulo")){
                 
                     String varNome = request.getParameter("nome");
@@ -66,9 +67,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
 		    
                     List listaAtores = new ArrayList();
                     Diretor diretor = null;
-                    Classe classe = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Classe classe = null;           
                     
                     Criteria c  = s.createCriteria(Ator.class);
                     List l = c.list();
@@ -104,10 +103,9 @@ public class ServletCadastrarTitulo extends HttpServlet {
 
                         if((id == varIdClasse))
                             classe = c1;                   
-                    }       
-                    s.close();
+                    }                       
 
-                   int r = AplCadastrarTitulo.inserirTitulo(varNome, varAno, varSinopse, varCategoria, diretor, classe, listaAtores);
+                   int r = AplCadastrarTitulo.inserirTitulo(s, varNome, varAno, varSinopse, varCategoria, diretor, classe, listaAtores);
 			
                     if(r == AplCadastrarAtor.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -124,10 +122,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                     int varIdClasse = Integer.parseInt(request.getParameter("classe"));
                     int varAno = Integer.parseInt(request.getParameter("ano"));
                    // String varSinopse = request.getParameter("sinopse");
-                 
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
-                    
+                                  
                     Criteria c  = s.createCriteria(Titulo.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -142,9 +137,6 @@ public class ServletCadastrarTitulo extends HttpServlet {
                             t.setAno(varAno);
                             //t.setSinopse(varSinopse);
                             
-                            // sf = ConexaoSessionFactory.getSessionFactory();
-                            // s = sf.openSession();
-
                              c  = s.createCriteria(Diretor.class);
                              l = c.list();
                              i = l.iterator();
@@ -156,11 +148,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                                      t.setDiretor(d);
                                  }
                              }
-                             
-                             
-                            // sf = ConexaoSessionFactory.getSessionFactory();
-                            // s = sf.openSession();
-
+                         
                              c  = s.createCriteria(Classe.class);
                              l = c.list();
                              i = l.iterator();
@@ -173,9 +161,8 @@ public class ServletCadastrarTitulo extends HttpServlet {
                                  }
                              }
                         }
-                    }
-                    s.close();
-                    int r = AplCadastrarTitulo.alterarTitulo(t);
+                    }                    
+                    int r = AplCadastrarTitulo.alterarTitulo(s, t);
 			
                     if(r == AplCadastrarTitulo.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -187,9 +174,7 @@ public class ServletCadastrarTitulo extends HttpServlet {
                     
                     int varIdTitulo = Integer.parseInt(request.getParameter("id"));
                     
-                    Titulo titulo = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Titulo titulo = null;                
                     Criteria c  = s.createCriteria(Titulo.class);
                     List l = c.list();
                     Iterator i = l.iterator();  
@@ -201,8 +186,8 @@ public class ServletCadastrarTitulo extends HttpServlet {
                         if((id == varIdTitulo))
                             titulo = t1;                   
                     }  
-                    s.close();                    
-                    int r = AplCadastrarTitulo.excluirTitulo(titulo);
+                                
+                    int r = AplCadastrarTitulo.excluirTitulo(s, titulo);
 			
                     if(r == AplCadastrarTitulo.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
