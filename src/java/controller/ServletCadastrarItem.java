@@ -14,6 +14,7 @@ import model.application.acervo.AplCadastrarAtor;
 import model.application.acervo.AplCadastrarItem;
 import model.application.cliente.AplCadastrarCliente;
 import model.domain.acervo.Ator;
+import model.domain.acervo.Diretor;
 import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
 import model.domain.cliente.Cliente;
@@ -101,7 +102,51 @@ public class ServletCadastrarItem extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
                 } else if(valor.equals("alterarItem")){
-                  
+                    
+                    int varId = Integer.parseInt(request.getParameter("id"));
+                    int varIdTitulo = Integer.parseInt(request.getParameter("titulo"));
+                    String tipo = request.getParameter("tipo");
+                    int serie = Integer.parseInt(request.getParameter("serie"));
+                    String dtAq = request.getParameter("dtAq");
+                    
+                    Criteria c  = s.createCriteria(Item.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Item i1 = null;
+                    while(i.hasNext()){
+                        i1 = (Item) i.next();
+                        int id = i1.getId();
+                       
+                        if(id  ==  varId){ //Encontrou esse item pelo ID
+                            //Buscar o novo titulo deste item e setar
+                            c  = s.createCriteria(Titulo.class);
+                            l = c.list();
+                            i = l.iterator();
+                             
+                            while(i.hasNext()){
+                                Titulo t = (Titulo) i.next();
+                                                             
+                                if(t.getId() == varIdTitulo){
+                                    i1.setTitulo(t);
+                                 }
+                             }
+                            
+                            //Realiza o restante das alteraçõs (Numero de Serie, Tipo, Data)
+                            
+                            i1.setDtAquisicao(dtAq);
+                            i1.setNumSerie(serie);
+                            i1.setTipoItem(tipo);
+                        }
+                                                     
+                    }             
+                    int r = AplCadastrarItem.alterarItem(s, i1);
+			
+                    if(r == AplCadastrarItem.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
+			
                 }
 	}
 
