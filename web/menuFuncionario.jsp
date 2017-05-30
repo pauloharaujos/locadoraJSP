@@ -69,8 +69,8 @@
 				    </a>
 				    <ul class="dropdown-menu">
 				     <li> <a href="cadastrarClasse.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Classe</a> </li>
-				     <li> <a href="alterarClasse.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Classe</a> </li>
-				     <li> <a href="excluirClasse.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Classe</a> </li>
+				     <li> <a href="consultarAlteracaoClasse.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Classe</a> </li>
+				     <li> <a href="consultarExclusaoClasse.jsp"><span class="glyphicon glyphicon-remove"></span> Excluir Classe</a> </li>
 				    </ul>
 				    </li>
 				    

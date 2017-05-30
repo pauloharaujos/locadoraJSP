@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.application.acervo.AplCadastrarAtor;
 import model.application.acervo.AplCadastrarClasse;
 import model.application.acervo.AplCadastrarDiretor;
+import model.domain.acervo.Ator;
 import model.domain.acervo.Classe;
 import model.domain.acervo.Diretor;
 import org.hibernate.Criteria;
@@ -47,7 +48,7 @@ public class ServletCadastrarClasse extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 String valor = request.getParameter("operacao");
-
+                Session s = (Session) request.getAttribute("sessaoBD");
 		
                 if(valor.equals("incluirClasse")){
                     String varNome = request.getParameter("nome");
@@ -55,7 +56,7 @@ public class ServletCadastrarClasse extends HttpServlet {
                     String varData = request.getParameter("data");
                     String varOperacao = request.getParameter("cadastrar");
                     
-                    int r = AplCadastrarClasse.inserirClasse(varNome, Integer.parseInt(varValor), varData);
+                    int r = AplCadastrarClasse.inserirClasse(s, varNome, Integer.parseInt(varValor), varData);
 			
                     if(r == AplCadastrarClasse.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
@@ -63,13 +64,32 @@ public class ServletCadastrarClasse extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
 		}else if (valor.equals("alterarClasse")){
+                    
+		    int varId = Integer.parseInt(request.getParameter("id"));
+                    String varNome = request.getParameter("nome");
+                                
+                    Criteria c  = s.createCriteria(Classe.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Classe c1 = null;
+                    while(i.hasNext()){
+                        c1 = (Classe) i.next();
+                        int id = c1.getId();
+
+                        if(id  ==  varId)
+                            c1.setNome(varNome);                             
+                    }               
+                    int r = AplCadastrarClasse.alterarClasse(s, c1);
 			
+                    if(r == AplCadastrarClasse.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }	
 		}else if (valor.equals("excluirClasse")){
-                    int varIdClasse = Integer.parseInt(request.getParameter("classe"));
+                    int varIdClasse = Integer.parseInt(request.getParameter("id"));
                     
                     Classe classe = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
                     Criteria c  = s.createCriteria(Classe.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -82,7 +102,7 @@ public class ServletCadastrarClasse extends HttpServlet {
                             classe = c1;                   
                     }        
                     s.close();
-                    int r = AplCadastrarClasse.excluirClasse(classe);
+                    int r = AplCadastrarClasse.excluirClasse(s, classe);
 			
                     if(r == AplCadastrarClasse.SUCESSO) {
                         response.sendRedirect("msgCadastroSucesso.jsp");
