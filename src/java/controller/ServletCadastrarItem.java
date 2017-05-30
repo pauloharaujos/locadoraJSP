@@ -13,6 +13,7 @@ import model.application.acervo.AplCadastrarAtor;
 
 import model.application.acervo.AplCadastrarItem;
 import model.application.cliente.AplCadastrarCliente;
+import model.domain.acervo.Ator;
 import model.domain.acervo.Item;
 import model.domain.acervo.Titulo;
 import model.domain.cliente.Cliente;
@@ -100,7 +101,7 @@ public class ServletCadastrarItem extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
                 } else if(valor.equals("alterarItem")){
-                    
+                  
                 }
 	}
 
