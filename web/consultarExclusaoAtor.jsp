@@ -11,7 +11,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Consultar Alteracao Ator</title>
+	<title>Consultar Exclusao Ator</title>
 	<!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
@@ -24,7 +24,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR ATOR PARA ALTERAÇÃO</h2>
+			<h2 align="center"> CONSULTAR ATOR PARA EXCLUSAO</h2>
               <br><br>             
                                                  
                               
@@ -47,10 +47,10 @@
                         Ator t1 = (Ator) i.next();
                         int id = t1.getId(); 
 //                       
-                            out.println("<form class='form-horizontal' method='POST' action='alterarAtor.jsp'>");
+                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarAtor'>");
                             out.println("<tr>");
                             out.println("<td>"+ t1.getNome() +"</td>"                                                          
-                                    + " <td> <button type='submit' name='operacao' value='alterarAtor' class='btn btn-default'  > Alterar  </button> ");
+                                    + " <td> <button type='submit' name='operacao' value='excluirAtor' class='btn btn-default'  > Excluir  </button> ");
                             out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
                             out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");                      
                             out.println("</tr>");
