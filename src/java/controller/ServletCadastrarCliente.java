@@ -16,9 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.application.acervo.AplCadastrarAtor;
+import model.application.acervo.AplCadastrarTitulo;
 import model.application.cliente.AplCadastrarCliente;
 import model.domain.acervo.Ator;
+import model.domain.acervo.Classe;
+import model.domain.acervo.Diretor;
+import model.domain.acervo.Titulo;
 import model.domain.cliente.Cliente;
+import model.domain.cliente.Dependente;
 import model.domain.cliente.Socio;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -157,6 +162,49 @@ public class ServletCadastrarCliente extends HttpServlet {
                     }else{
                         response.sendRedirect("msgCadastroError.jsp");
                     }
+                }else if (valor.equals("alterarDependente")){
+                    
+                    int varId = Integer.parseInt(request.getParameter("id"));
+                    String varNome = request.getParameter("nome");                  
+                    String varSexo = request.getParameter("sexo");                   
+                    int varAtivo = Integer.parseInt(request.getParameter("ativo"));
+                    int varIdSocio = Integer.parseInt(request.getParameter("socio"));             
+                                  
+                    Criteria c  = s.createCriteria(Dependente.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Dependente d = null;
+                    while(i.hasNext()){
+                        d = (Dependente) i.next();
+                        int id = d.getNumIncricao();
+                            
+                        if(id  ==  varId){ //Se encontrar o Dependente, entao alterar os dados dele
+                            d.setNome(varNome);
+                            d.setSexo(varSexo);
+                            d.setEstahAtivo(varAtivo);                            
+                            
+                            //Vamos buscar o objeto socio pelo numInscricao e alterar neste dependente
+                             c  = s.createCriteria(Socio.class);
+                             l = c.list();
+                             i = l.iterator();
+                             
+                             while(i.hasNext()){
+                                 Socio s1 = (Socio) i.next();
+                                                             
+                                 if(s1.getNumIncricao() == varIdSocio){
+                                     d.setSocio(s1);
+                                 }
+                             }                         
+                        }                        
+                    }                    
+                    int r = AplCadastrarCliente.alterarCliente(s, d);
+			
+                    if(r == AplCadastrarCliente.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
+                    
                 }
 		
     }

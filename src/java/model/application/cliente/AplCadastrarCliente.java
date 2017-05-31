@@ -44,5 +44,10 @@ public class AplCadastrarCliente {
 	s.delete(cliente);
 	return SUCESSO;		
     } 
+    
+    public static int alterarCliente(Session s, Cliente cliente){		                        
+	s.update(cliente);
+	return SUCESSO;		
+    } 
 
 }
