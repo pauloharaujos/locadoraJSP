@@ -1,3 +1,6 @@
+<%@page import="model.domain.cliente.Socio"%>
+<%@page import="model.domain.cliente.Dependente"%>
+<%@page import="model.domain.cliente.Cliente"%>
 <%@page import="model.domain.acervo.Titulo"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -10,7 +13,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Consultar Titulo Para Exclusão</title>
+	<title>Consultar Cliente Para Exclusão</title>
 	<!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
@@ -23,7 +26,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR TÍTULO PARA EXCLUSÃO</h2>
+			<h2 align="center"> CONSULTAR CLIENTE PARA EXCLUSÃO</h2>
               <br><br>             
                                                  
                               
@@ -31,43 +34,57 @@
                 
               <table id="myTable" class="table table-striped table-bordered table-hover">
                  <thead>
-                    <tr><th>Titulo</th><th>Sinopse</th><th>Ano</th><th>Categoria</th><th>Classe</th><th>Diretor</th></tr>
+                    <tr><th>Nome</th><th>Numero de Inscrição</th><th>Sexo</th><th>Data de Nascimento</th><th>Ativo ?</th><th>Nome do Socio</th>
+                    <th>CPF</th><th>Endereço</th><th>Telefone</th></tr>
                 </thead>
         
                 <tbody data-link='row' class='rowlink'>
                  <%
                       Session s = (Session) request.getAttribute("sessaoBD");
-                      Criteria c = s.createCriteria(Titulo.class);
+                      Criteria c = s.createCriteria(Cliente.class);
                       c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                       List l = c.list();
-                      Iterator i = l.iterator();
-                      String op = request.getParameter("op");
+                      Iterator i = l.iterator();                      
                       
                       while(i.hasNext()){
-                        Titulo t1 = (Titulo) i.next();
-                        int id = t1.getId(); 
-//                        if(op.equals("alterar")){
-                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarTitulo'>");
-                            out.println("<tr>");
-                            out.println("<td>"+ t1.getNome() +"</td>"
-                                    + "<td>"+t1.getSinopse()+"</td>"
-                                    + "<td>"+t1.getAno()+"</td>"
-                                    + "<td>"+t1.getCategoria()+"</td>"    
-                                    + "<td>"+t1.getClasse()+"</td>"
-                                    + "<td>"+t1.getDiretor()+"</td>"                                
-                                    + " <td> <button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default'  > Excluir  </button> ");
-                            out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
-                            out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
-                            out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
-                            out.println("<input type='hidden' id='ano' name='ano' value ='"+ t1.getAno() +"'>");
-                            out.println("<input type='hidden' id='categoria' name='categoria' value ='"+ t1.getCategoria()+"'>");
-                            out.println("<input type='hidden' id='classe' name='classe' value ='"+ t1.getClasse()+"'>");
-                            out.println("<input type='hidden' id='diretor' name='diretor' value ='"+ t1.getDiretor()+"'>");                        
+                        Cliente c1 = (Cliente) i.next();
+                       
+                        if( c1 instanceof Dependente ){
+                          Dependente d1 = (Dependente) c1;
+                          
+                        out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarCliente'>");
+                        out.println("<tr>");
+                        out.println("<td>"+ d1.getNome() +"</td>"
+                                    + "<td>"+d1.getNumIncricao()+"</td>"
+                                    + "<td>"+d1.getSexo()+"</td>"
+                                    + "<td>"+d1.getDtNascimento()+"</td>"     
+                                    + "<td>"+d1.getEstahAtivo()+"</td>"
+                                    + "<td>"+d1.getSocio()+"</td>"
+                                    + " <td> <button type='submit' name='operacao' value='excluirCliente' class='btn btn-default'  > Excluir Dependente </button> ");
+                            out.println("<input type='hidden' id='id' name='id' value ='" + d1.getNumIncricao() + "'>");
                             out.println("</tr>");
-                            out.println("</form>");                            
+                            out.println("</form>");    
+                        }else{
+                            Socio s1 = (Socio) c1;
+                          
+                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarCliente'>");
+                            out.println("<tr>");
+                            out.println("<td>"+ s1.getNome() +"</td>"
+                                        + "<td>"+s1.getNumIncricao()+"</td>"
+                                        + "<td>"+s1.getSexo()+"</td>"
+                                        + "<td>"+s1.getDtNascimento()+"</td>"     
+                                        + "<td>"+s1.getEstahAtivo()+"</td>"
+                                        + "<td> - </td>"
+                                        + "<td>"+s1.getCpf()+"</td>"
+                                        + "<td>"+s1.getEndereco()+"</td>"
+                                        + "<td>"+s1.getTel()+"</td>"
+                                        + " <td> <button type='submit' name='operacao' value='excluirCliente' class='btn btn-default'  > Excluir Socio </button> ");
+                            out.println("<input type='hidden' id='id' name='id' value ='" + s1.getNumIncricao() + "'>");
+                            out.println("</tr>");
+                            out.println("</form>");    
                         }
-
-//                      } 
+                                          
+                        }
                   %> 
                   </tbody>
               </table>             

@@ -62,12 +62,6 @@
                                     + "<td>"+d1.getEstahAtivo()+"</td>"
                                     + "<td>"+d1.getSocio()+"</td>"
                                     );
-                            out.println("<input type='hidden' id='id' name='id' value ='" + d1.getNumIncricao() + "'>");
-                            out.println("<input type='hidden' id='nome' name='nome' value ='"+ d1.getNome()+"'>");
-                            out.println("<input type='hidden' id='sexo' name='sexo' value ='"+ d1.getSexo()+"'>");
-                            out.println("<input type='hidden' id='dtNasc' name='dtNasc' value ='"+ d1.getDtNascimento() +"'>");
-                            out.println("<input type='hidden' id='ativo' name='ativo' value ='"+ d1.getEstahAtivo()+"'>"); 
-                            out.println("<input type='hidden' id='idSocio' name='idSocio' value ='"+ d1.getSocio().getNumIncricao()+"'>");
                             out.println("</tr>");
                             out.println("</form>");    
                         }else{

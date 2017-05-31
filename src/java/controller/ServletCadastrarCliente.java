@@ -135,7 +135,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                     }             
 			
 		}else if (valor.equals("excluirCliente")){
-		    int varIdCliente = Integer.parseInt(request.getParameter("cliente"));
+		    int varIdCliente = Integer.parseInt(request.getParameter("id"));
                     
                     Cliente cliente = null;                  
                     Criteria c  = s.createCriteria(Cliente.class);
