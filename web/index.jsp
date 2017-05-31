@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.hibernate.Criteria"%>
+<%@page import="model.domain.acervo.Titulo"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -56,64 +61,47 @@
 				</div>
 				
 			</div>
-	</nav>   
+</nav>   
 	
     <div class="container">
-
-        <div class="col-md-12 jumbotron">
-			<h2 align="center"> CONSULTAR TÍTULO</h2>		
-			
-		<form class="form-horizontal" method="POST" action="#"> 
-		<div class="row">
-		  <div class="col-md-12">
-		 
-		  <div class="col-md-12">
-		    <div class="input-group">
-		      <input type="text" class="form-control" aria-label="...">
-		      <div class="input-group-btn">
-		        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filtro <span class="caret"></span></button>
-		        <ul class="dropdown-menu dropdown-menu-right">
-		          <li><a href="#">Ator</a></li>
-		          <li><a href="#">Título</a></li>
-		          <li><a href="#">Categoria</a></li>		              
-		        </ul>
-		       <button class="btn button-primary">OK</button>
-		      </div><!-- /btn-group -->
-		      
-		    </div><!-- /input-group -->
-		  </div><!-- /.col-lg-6 -->
-		</div><!-- /.row -->
-			
-       </div>    
-       </form>       
-       
-    	</div>
-    	
-    	
     
-		
-		<div class="panel panel-success">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Títulos Encontrados</h3>
-		  </div>
-		  <div class="panel-body">
-		    <div class="row">
-			  <div class="col-sm-6 col-md-4">
-			    <div class="thumbnail">
-			      <img src="img/rambo1.png" alt="...">
-			      <div class="caption">
-			        <h3>rambo</h3>
-			        <p>...</p>
-			        <p><a href="#" class="btn btn-primary" role="button">Ler Mais</a></p>
-			      </div>
-			    </div>
-			  </div>
-			 </div>
-		  </div>
-		</div>	
-	
-	
-       
+    <div class="col-md-12 jumbotron">   
+			
+            <h2 align="center"> CONSULTAR TÍTULO</h2>
+            
+           <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Digite um nome para Filtrar">          
+                
+              <table id="myTable" class="table table-striped table-bordered table-hover">
+                 <thead>
+                    <tr><th>Titulo</th><th>Sinopse</th><th>Ano</th><th>Categoria</th><th>Classe</th><th>Diretor</th></tr>
+                </thead>
+        
+                <tbody data-link='row' class='rowlink'>
+                 <%
+                      Session s = (Session) request.getAttribute("sessaoBD");
+                      Criteria c = s.createCriteria(Titulo.class);
+                      c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                      List l = c.list();
+                      Iterator i = l.iterator();                    
+                      
+                      while(i.hasNext()){
+                        Titulo t1 = (Titulo) i.next();
+                        int id = t1.getId();                  
+                            out.println("<form class='form-horizontal' method='POST' action='#'>");
+                            out.println("<tr>");
+                            out.println("<td>"+ t1.getNome() +"</td>"
+                                    + "<td>"+t1.getSinopse()+"</td>"
+                                    + "<td>"+t1.getAno()+"</td>"
+                                    + "<td>"+t1.getCategoria()+"</td>"    
+                                    + "<td>"+t1.getClasse()+"</td>"
+                                    + "<td>"+t1.getDiretor()+"</td>");                      
+                            out.println("</tr>");
+                            out.println("</form>");                            
+                        }
+                  %> 
+                  </tbody>
+              </table>  
+    </div>
 
     		<div id="footer" class="col-md-12">
     		    <h4 align="center"> Desenvolvido por Paulo Henrique - M18 <br> IFES - Campus Colatina</h4>
@@ -122,7 +110,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="funcoes.js"> </script>
 
 </body>
 </html>
