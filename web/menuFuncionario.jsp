@@ -19,12 +19,13 @@
 				    <span class="glyphicon glyphicon-user"></span> Cliente <span class="caret"></span>
 				    </a>
 				    <ul class="dropdown-menu">
+                                     <li> <a href="consultarCliente.jsp"> <span class="glyphicon glyphicon-search"></span> Consultar Cliente</a> </li>
 				     <li> <a href="cadastrarSocio.jsp"><span class="glyphicon glyphicon-plus"></span> Cadastrar Sócio</a> </li>
 				     <li> <a href="cadastrarDependente.jsp"><span class="glyphicon glyphicon-refresh"></span> Cadastrar Dependente</a> </li>
 				     <li> <a href="alterarCliente.jsp"> <span class="glyphicon glyphicon-remove"></span> Alterar Cliente</a> </li>
 				     <li> <a href="desativarCliente.jsp"> <span class="glyphicon glyphicon-eye-close"></span> Desativar Cliente</a> </li>
 				     <li> <a href="reativarCliente.jsp"> <span class="glyphicon glyphicon-share-alt"></span> Reativar Cliente</a> </li>
-				     <li> <a href="excluirCliente.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Cliente</a> </li>
+				     <li> <a href="consultarExclusaoCliente.jsp"> <span class="glyphicon glyphicon-remove"></span> Excluir Cliente</a>
 				    </ul>
 				    </li>
 				    

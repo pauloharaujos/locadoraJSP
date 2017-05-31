@@ -107,8 +107,8 @@ public class ServletCadastrarCliente extends HttpServlet {
 
                         if(id == varIdSocio)
                             socio = so;
-                    }    
-                    s.close();
+                    }   
+                
                    int r = AplCadastrarCliente.inserirDependente(s, varNome, varDtNasc, varSexo, varAtivo, socio);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {
@@ -149,7 +149,7 @@ public class ServletCadastrarCliente extends HttpServlet {
                         if((id == varIdCliente))
                             cliente = c1;                   
                     }       
-                    s.close();
+               
                     int r = AplCadastrarCliente.excluirCliente(s, cliente);
 			
                     if(r == AplCadastrarCliente.SUCESSO) {

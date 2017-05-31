@@ -1,4 +1,3 @@
-<%@page import="model.domain.acervo.Item"%>
 <%@page import="model.domain.acervo.Titulo"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -11,7 +10,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Consultar Item</title>
+	<title>Consultar Titulo Para Exclusão</title>
 	<!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="estilo.css" rel="stylesheet">
@@ -24,7 +23,7 @@
 
         <div class="col-md-12 jumbotron">
         
-			<h2 align="center"> CONSULTAR ITEM</h2>
+			<h2 align="center"> CONSULTAR TÍTULO PARA EXCLUSÃO</h2>
               <br><br>             
                                                  
                               
@@ -32,35 +31,43 @@
                 
               <table id="myTable" class="table table-striped table-bordered table-hover">
                  <thead>
-                    <tr><th>Titulo</th><th>Tipo Item</th><th>Numero de Série</th><th>Data de Aquisição</th></tr>
+                    <tr><th>Titulo</th><th>Sinopse</th><th>Ano</th><th>Categoria</th><th>Classe</th><th>Diretor</th></tr>
                 </thead>
         
                 <tbody data-link='row' class='rowlink'>
                  <%
                       Session s = (Session) request.getAttribute("sessaoBD");
-                      Criteria c = s.createCriteria(Item.class);
+                      Criteria c = s.createCriteria(Titulo.class);
                       c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                       List l = c.list();
-                      Iterator i = l.iterator();                      
+                      Iterator i = l.iterator();
+                      String op = request.getParameter("op");
                       
                       while(i.hasNext()){
-                        Item t1 = (Item) i.next();
+                        Titulo t1 = (Titulo) i.next();
                         int id = t1.getId(); 
-                        out.println("<form class='form-horizontal' method='POST' action='#'>");
-                        out.println("<tr>");
-                        out.println("<td>"+ t1.getTitulo() +"</td>"
-                                    + "<td>"+t1.getTipoItem()+"</td>"
-                                    + "<td>"+t1.getNumSerie()+"</td>"
-                                    + "<td>"+t1.getDtAquisicao()+"</td>"                                                                  
-                                    );
+//                        if(op.equals("alterar")){
+                            out.println("<form class='form-horizontal' method='POST' action='ServletCadastrarTitulo'>");
+                            out.println("<tr>");
+                            out.println("<td>"+ t1.getNome() +"</td>"
+                                    + "<td>"+t1.getSinopse()+"</td>"
+                                    + "<td>"+t1.getAno()+"</td>"
+                                    + "<td>"+t1.getCategoria()+"</td>"    
+                                    + "<td>"+t1.getClasse()+"</td>"
+                                    + "<td>"+t1.getDiretor()+"</td>"                                
+                                    + " <td> <button type='submit' name='operacao' value='excluirTitulo' class='btn btn-default'  > Excluir  </button> ");
                             out.println("<input type='hidden' id='id' name='id' value ='" + t1.getId() + "'>");
-                            out.println("<input type='hidden' id='titulo' name='titulo' value ='"+ t1.getTitulo()+"'>");
-                            out.println("<input type='hidden' id='tipo' name='tipo' value ='"+ t1.getTipoItem()+"'>");
-                            out.println("<input type='hidden' id='serie' name='serie' value ='"+ t1.getNumSerie() +"'>");
-                            out.println("<input type='hidden' id='dtAq' name='dtAq' value ='"+ t1.getDtAquisicao()+"'>");                        
+                            out.println("<input type='hidden' id='nome' name='nome' value ='"+ t1.getNome()+"'>");
+                            out.println("<input type='hidden' id='sinopse' name='sinopse' value ='"+ t1.getSinopse()+"'>");
+                            out.println("<input type='hidden' id='ano' name='ano' value ='"+ t1.getAno() +"'>");
+                            out.println("<input type='hidden' id='categoria' name='categoria' value ='"+ t1.getCategoria()+"'>");
+                            out.println("<input type='hidden' id='classe' name='classe' value ='"+ t1.getClasse()+"'>");
+                            out.println("<input type='hidden' id='diretor' name='diretor' value ='"+ t1.getDiretor()+"'>");                        
                             out.println("</tr>");
                             out.println("</form>");                            
                         }
+
+//                      } 
                   %> 
                   </tbody>
               </table>             

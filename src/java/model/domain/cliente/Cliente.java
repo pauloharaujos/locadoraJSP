@@ -36,7 +36,7 @@ public class Cliente {
 //	private List<Locacao> locacoes;
 	
 	
-            public Cliente(String nome, String dtNascimento, String sexo, int estahAtivo) {
+       public Cliente(String nome, String dtNascimento, String sexo, int estahAtivo) {
 		
 		this.nome = nome;		
 		this.dtNascimento = dtNascimento;
