@@ -205,6 +205,41 @@ public class ServletCadastrarCliente extends HttpServlet {
                         response.sendRedirect("msgCadastroError.jsp");
                     }
                     
+                }else if (valor.equals("alterarSocio")){
+                    
+                    int varId = Integer.parseInt(request.getParameter("id"));
+                    String varNome = request.getParameter("nome");                  
+                    String varSexo = request.getParameter("sexo");                   
+                    int varAtivo = Integer.parseInt(request.getParameter("ativo"));
+                    String varCPF = request.getParameter("cpf");
+                    String varEndereco = request.getParameter("endereco");
+                    String varTelefone = request.getParameter("telefone");
+                                  
+                    Criteria c  = s.createCriteria(Socio.class);
+                    List l = c.list();
+                    Iterator i = l.iterator();
+                    Socio s1 = null;
+                    while(i.hasNext()){
+                        s1 = (Socio) i.next();
+                        int id = s1.getNumIncricao();
+                            
+                        if(id  ==  varId){ //Se encontrar o Dependente, entao alterar os dados dele
+                            s1.setNome(varNome);
+                            s1.setSexo(varSexo);
+                            s1.setEstahAtivo(varAtivo);
+                            s1.setCpf(varCPF);
+                            s1.setEndereco(varEndereco);
+                            s1.setTel(varTelefone);
+                        }                        
+                    }                    
+                    int r = AplCadastrarCliente.alterarCliente(s, s1);
+			
+                    if(r == AplCadastrarCliente.SUCESSO) {
+                        response.sendRedirect("msgCadastroSucesso.jsp");
+                    }else{
+                        response.sendRedirect("msgCadastroError.jsp");
+                    }
+                    
                 }
 		
     }
