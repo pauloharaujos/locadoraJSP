@@ -102,6 +102,15 @@ public class Locacao {
 	public void setItem(Item item) {
 		this.item = item;
 	}
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+        
 	
 	public String toString(){
             return Integer.toString(this.idLocacao);

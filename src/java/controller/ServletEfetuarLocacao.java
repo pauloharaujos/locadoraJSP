@@ -86,17 +86,16 @@ public class ServletEfetuarLocacao extends HttpServlet {
             throws ServletException, IOException {
      
         String valor = request.getParameter("operacao");
-		
+	Session s = (Session) request.getAttribute("sessaoBD");	
 				
 	if(valor.equals("incluirLocacao")){
                     int varIdItem = Integer.parseInt(request.getParameter("item"));
                     int varIdCliente = Integer.parseInt(request.getParameter("cliente"));
                     int varValor = Integer.parseInt(request.getParameter("valor"));
-                    String varData = request.getParameter("data");
+                    String varDataPrevista = request.getParameter("dataPrevista");
+                    String varDataAtual = request.getParameter("dataAtual");
                     
                     Item item = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
                     Criteria c  = s.createCriteria(Item.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -109,9 +108,7 @@ public class ServletEfetuarLocacao extends HttpServlet {
                             item = t1;                   
                     }    
                     
-                    Cliente cliente = null;
-                    sf = ConexaoSessionFactory.getSessionFactory();
-                    s = sf.openSession();
+                    Cliente cliente = null;                 
                     c  = s.createCriteria(Cliente.class);
                     l = c.list();
                     i = l.iterator();
@@ -123,8 +120,8 @@ public class ServletEfetuarLocacao extends HttpServlet {
                         if((id == varIdCliente))
                             cliente = c1;                   
                     }           
-                     s.close();
-                    int r = AplEfetuarLocacao.inserirLocacao("18/04/2017", varData, "", varValor, 0, item, cliente);
+                    
+                    int r = AplEfetuarLocacao.inserirLocacao(varDataAtual, varDataPrevista, "", varValor, 0, item, cliente);
 			
 			if(r == AplEfetuarLocacao.SUCESSO) {
                             response.sendRedirect("msgCadastroSucesso.jsp");
@@ -135,11 +132,9 @@ public class ServletEfetuarLocacao extends HttpServlet {
 			
 		}else if (valor.equals("cancelarLocacao")){
                 
-                    int varIdLocacao = Integer.parseInt(request.getParameter("locacao"));
+                    int varIdLocacao = Integer.parseInt(request.getParameter("id"));
                     
-                    Locacao locacao = null;
-                    SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                    Session s = sf.openSession();
+                    Locacao locacao = null;               
                     Criteria c  = s.createCriteria(Locacao.class);
                     List l = c.list();
                     Iterator i = l.iterator();
@@ -150,8 +145,7 @@ public class ServletEfetuarLocacao extends HttpServlet {
 
                         if((id == varIdLocacao))
                             locacao = d1;                   
-                    }       
-                    s.close();
+                    }                          
                     int r = AplEfetuarLocacao.cancelarLocacao(locacao);
 			
                     if(r == AplEfetuarLocacao.SUCESSO) {

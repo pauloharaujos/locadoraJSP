@@ -36,7 +36,7 @@
 				    <ul class="dropdown-menu">
 				     <li> <a href="efetuarLocacao.jsp"><span class="glyphicon glyphicon-plus"></span> Efetuar Locação</a> </li>
 				     <li> <a href="alterarLocacao.jsp"><span class="glyphicon glyphicon-refresh"></span> Alterar Locação</a> </li>
-				     <li> <a href="cancelarLocacao.jsp"> <span class="glyphicon glyphicon-remove"></span> Cancelar Locação</a> </li>
+				     <li> <a href="consultarExclusaoLocacao.jsp"> <span class="glyphicon glyphicon-remove"></span> Cancelar Locação</a> </li>
 				     <li> <a href="efetuarDevolucao.jsp"> <span class="glyphicon glyphicon-share-alt"></span> Efetuar Devolução</a> </li>
 				    
 				    </ul>

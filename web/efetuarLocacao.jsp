@@ -36,8 +36,7 @@
                   <div class="col-sm-10">
                       <select name="item" class="form-control">
                           <%
-                              SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
-                              Session s = sf.openSession();
+                              Session s = (Session) request.getAttribute("sessaoBD");
                               Criteria c  = s.createCriteria(Item.class);
                               c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                               List l = c.list();
@@ -48,7 +47,7 @@
                                   int id = t1.getId();
                                   out.println("<option value='"+ id +"' >" +t1+"</option>");
                               }         
-                              s.close();
+                          
                           %>
                       </select>                
                 </div>
@@ -58,9 +57,7 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">Nome do Cliente</label>
                   <div class="col-sm-10">
                       <select name="cliente" class="form-control">
-                          <%
-                              sf = ConexaoSessionFactory.getSessionFactory();
-                              s = sf.openSession();
+                          <%                           
                               c  = s.createCriteria(Cliente.class);
                               c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                               l = c.list();
@@ -82,14 +79,20 @@
                     <input type="text" name="valor" value="20" class="form-control" id="inputEmail3" placeholder="R$ 20,00">
                 </div>
               </div>
-
+                      
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Data Atual</label>
+                <div class="col-sm-10">
+                  <input type="text" name="dataAtual" value="31/05/2017" class="form-control" id="inputEmail3" placeholder="20/08/2017">
+                </div>
+              </div>
                         
 
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Data Prevista</label>
                 <div class="col-sm-10">
-                  <input type="text" name="data" value="31/04/2017" class="form-control" id="inputEmail3" placeholder="20/08/2017">
-              </div>
+                  <input type="text" name="dataPrevista" value="31/09/2017" class="form-control" id="inputEmail3" placeholder="20/08/2017">
+                </div>
               </div>
 
               <div class="form-group">
