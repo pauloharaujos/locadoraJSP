@@ -9,11 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
 
 import model.domain.acervo.Item;
-
+@XmlRootElement
 @Entity
 @Table(name = "locacao")
 public class Locacao {
