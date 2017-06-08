@@ -16,6 +16,7 @@ public class ListarLocacoes {
     
     @GET
     @Produces (MediaType.APPLICATION_XML)
+    @Path ("/getLocacoes")
     public List <Locacao> getLocacoes(){
                              
         SessionFactory sf = ConexaoSessionFactory.getSessionFactory();
