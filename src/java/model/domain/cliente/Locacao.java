@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
@@ -55,7 +56,7 @@ public class Locacao {
         public int getId(){
             return this.idLocacao;
         }
-
+        @XmlElement
 	public String getDtLocacao() {
 		return dtLocacao;
 	}
@@ -103,7 +104,8 @@ public class Locacao {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-
+        
+    @XmlElement
     public Cliente getCliente() {
         return cliente;
     }
