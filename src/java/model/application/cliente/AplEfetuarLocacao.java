@@ -40,6 +40,12 @@ public class AplEfetuarLocacao {
 		
 	}  
         
+        public static int inserirLocacao(Session s, Locacao l){		 		
+            s.save(l);
+	    return SUCESSO;
+		
+	}  
+        
         public static int cancelarLocacao(Session s, Locacao locacao){		                        
 	    s.delete(locacao);	
 	    return SUCESSO;
